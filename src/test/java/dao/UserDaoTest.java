@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import top.yuyufeng.constants.UserAccountTypeEnum;
 import top.yuyufeng.constants.UserSatusEnum;
 import top.yuyufeng.dao.UserDao;
 import top.yuyufeng.entity.User;
@@ -19,19 +20,21 @@ import java.util.Date;
 public class UserDaoTest {
     @Autowired
     private UserDao userDao;
+
     @Test
-    public void test(){
+    public void test() {
         System.out.println("UserDao.test");
     }
 
     @Test
-    public void testInsert(){
+    public void testInsert() {
         User user = new User();
         user.setUserName("yyf");
         user.setUserAccount("201701");
         user.setUserPassword("aaaa123");
         user.setUserStatus(UserSatusEnum.NORMAL.getKey());
         user.setCreateTime(new Date());
+        user.setAccountType(UserAccountTypeEnum.SUPER_MANAGER.getKey());
         userDao.save(user);
     }
 }

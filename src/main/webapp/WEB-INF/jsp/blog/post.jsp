@@ -80,24 +80,8 @@
             <hr>
 
             <!-- Posted Comments -->
-
             <!-- Comment -->
-            <div class="media">
-                <a class="pull-left" href="#">
-                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">Start Bootstrap
-                        <small>August 25, 2014 at 9:30 PM</small>
-                    </h4>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                    Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                    vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </div>
-
-            <!-- Comment -->
-            <div class="media">
+            <%--<div class="media">
                 <a class="pull-left" href="#">
                     <img class="media-object" src="http://placehold.it/64x64" alt="">
                 </a>
@@ -124,7 +108,17 @@
                     </div>
                     <!-- End Nested Comment -->
                 </div>
-            </div>
+            </div>--%>
+            <!--PC版-->
+            <div id="SOHUCS" sid="articleID"></div>
+            <script charset="utf-8" type="text/javascript"
+                    src="https://changyan.sohu.com/upload/changyan.js"></script>
+            <script type="text/javascript">
+                window.changyan.api.config({
+                    appid: 'cyt41ItsL',
+                    conf: 'prod_892fe75589e3056d5f79d26919f03104'
+                });
+            </script>
 
         </div>
 

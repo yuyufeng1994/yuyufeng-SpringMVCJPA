@@ -19,13 +19,23 @@ public class User{
     private String userAccount;
     private String userName;
     private String userPassword;
+    /**
+     * 1 正常  / 0 锁定
+     */
     private String userStatus;
     private Date createTime;
+    /**
+     * 1 超级管理员  /  2 普通用户
+     */
+    private String accountType;
 
-//    @OrderBy("articleId desc")
-//    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "user")
-//    private Set<Article> articles = new LinkedHashSet<Article>();
+    public String getAccountType() {
+        return accountType;
+    }
 
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
 
     public Long getUserId() {
         return userId;
