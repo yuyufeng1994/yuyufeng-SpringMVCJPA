@@ -23,7 +23,7 @@ import java.util.UUID;
 @RequestMapping("/admin/file")
 public class FileController {
 
-    @Resource(name = "proMap")
+    @Resource(name = "propertiesMap")
     private Map<String, String> proMap;
     @Resource(name = "urlMap")
     private Map<String, String> urlMap;
