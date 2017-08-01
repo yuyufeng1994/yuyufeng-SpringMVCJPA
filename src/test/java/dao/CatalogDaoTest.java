@@ -6,12 +6,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.transaction.annotation.Transactional;
 import top.yuyufeng.dao.CatalogDao;
 import top.yuyufeng.entity.Catalog;
 
 /**
  * Created by yuyufeng on 2017/8/1.
  */
+@Transactional//junit懒加载
 public class CatalogDaoTest extends BaseDaoTest {
     @Autowired
     private CatalogDao catalogDao;
@@ -38,6 +40,12 @@ public class CatalogDaoTest extends BaseDaoTest {
         for (Catalog catalog : page.getContent()) {
             System.out.println(catalog.getCatalogName());
         }
+    }
+
+    @Test
+    public void testFindOne() {
+        Catalog catalog = catalogDao.findOne(1l);
+        System.out.println(catalog);
     }
 
 

@@ -2,6 +2,7 @@ package dao;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import top.yuyufeng.dao.BlogDao;
 import top.yuyufeng.dao.CatalogDao;
 import top.yuyufeng.entity.Blog;
@@ -15,12 +16,19 @@ import java.util.Set;
 /**
  * Created by yuyufeng on 2017/8/1.
  */
+@Transactional//junit懒加载
 public class BlogDaoTest extends BaseDaoTest {
     @Autowired
     private BlogDao blogDao;
 
     @Test
     public void test() {
+    }
+
+    @Test
+    public void testGet() {
+        Blog blog = blogDao.findOne(20l);
+        System.out.println(blog);
     }
 
     @Test

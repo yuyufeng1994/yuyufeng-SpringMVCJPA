@@ -10,22 +10,11 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		
 		<properties>
-			<!--声明数据库连接的驱动 -->
-			<!--<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />-->
-			<!--jdbc数据库的连接地址 -->
-			<!-- <property name="hibernate.connection.url" value="jdbc:mysql://192.168.1.105:3306/sok?useUnicode=true&amp;characterEncoding=UTF-8"/> 
-				<property name="hibernate.connection.username" value="root" /> <property 
-				name="hibernate.connection.password" value="creative" /> -->
-			<!--jdbc数据库的连接地址 （本地）
-			<property name="hibernate.connection.url"
-				value="jdbc:mysql://127.0.0.1:3306/sok?useUnicode=true&amp;characterEncoding=UTF-8" />
-			<property name="hibernate.connection.username" value="root" />
-			<property name="hibernate.connection.password" value="yyf12345" /> -->
 			<!-- 数据库连接属性配置由外部导入 -->
 			<!--配置方言 -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 			<!--激活查询日志功能 -->
-			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.show_sql" value="" />
 			<!--优雅地输出Sql -->
 			<property name="hibernate.format_sql" value="true" />
 			<!--添加一条解释型标注 -->
