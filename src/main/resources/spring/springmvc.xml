@@ -65,10 +65,10 @@
 			<bean class="top.yuyufeng.interceptor.URLBrokerLauncherInterceptor"></bean>
 		</mvc:interceptor>
 		<!--/** 表示所有url 包括子url路径 -->
-		<mvc:interceptor>
+		<!--<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<bean class="top.yuyufeng.interceptor.TestInterceptor"></bean>
-		</mvc:interceptor>
+		</mvc:interceptor>-->
 	</mvc:interceptors>
 
 

@@ -10,7 +10,7 @@
     <!--url-->
     <util:map id="urlMap" map-class="java.util.HashMap">
         <entry key="appServer" value="${server.app}"/>
-        <entry key="resourceServer" value="${server.resource}"/>
+        <entry key="staticServer" value="${server.static}"/>
     </util:map>
 
     <!--messages-->

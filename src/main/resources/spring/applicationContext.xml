@@ -41,9 +41,9 @@
 		<property name="url" value="${db.url}" />
 		<property name="username" value="${db.user}" />
 		<property name="password" value="${db.pwd}" />
-		<property name="maxIdle" value="10" />
-		<property name="maxActive" value="100" />
-		<property name="maxWait" value="10000" />
+		<property name="maxIdle" value="5" />
+		<property name="maxActive" value="5" />
+		<property name="maxWait" value="10" />
 		<property name="validationQuery" value="select 1" />
 		<property name="testOnBorrow" value="false" />
 		<property name="testWhileIdle" value="true" />
