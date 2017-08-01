@@ -2,6 +2,7 @@ package top.yuyufeng.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -11,11 +12,15 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "user_info")
-public class User implements Serializable {
+public class User{
     @Id // 主键
     @GeneratedValue(strategy = GenerationType.AUTO) // 自动增长类型
     private Long userId;
+    private String userAccount;
     private String userName;
+    private String userPassword;
+    private String userStatus;
+    private Date createTime;
 
 //    @OrderBy("articleId desc")
 //    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "user")
@@ -38,19 +43,35 @@ public class User implements Serializable {
         this.userName = userName;
     }
 
-//    public Set<Article> getArticles() {
-//        return articles;
-//    }
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-//    public void setArticles(Set<Article> articles) {
-//        this.articles = articles;
-//    }
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-    @Override
-    public String toString() {
-        return "UserInfo{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                '}';
+    public String getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(String userAccount) {
+        this.userAccount = userAccount;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    public String getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(String userStatus) {
+        this.userStatus = userStatus;
     }
 }
