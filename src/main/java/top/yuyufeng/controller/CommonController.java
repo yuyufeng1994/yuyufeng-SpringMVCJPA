@@ -18,7 +18,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/common")
 public class CommonController {
-    @Resource(name = "proMap")
+    @Resource(name = "propertiesMap")
     private Map<String, String> proMap;
 
     /**
