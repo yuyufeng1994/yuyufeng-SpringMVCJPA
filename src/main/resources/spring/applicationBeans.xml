@@ -13,6 +13,10 @@
         <entry key="staticServer" value="${server.static}"/>
     </util:map>
 
+    <util:map id="proMap" map-class="java.util.HashMap">
+        <entry key="fileContent" value="${file.content}"/>
+    </util:map>
+
     <!--messages-->
     <bean id="messageSource"
           class="org.springframework.context.support.ResourceBundleMessageSource">
