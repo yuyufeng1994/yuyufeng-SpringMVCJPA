@@ -53,7 +53,7 @@
                             <td>
                                 <div class="btn-group" role="group" aria-label="...">
                                     <a type="button" class="btn btn-warning"
-                                       href="${appServer}/admin/blog/save/${b.blogId}?returnUrl=${appServer}/admin/blog/list/${page.number+1}">修改</a>
+                                       href="${appServer}/admin/blog/save?returnUrl=${appServer}/admin/blog/list/${page.number+1}&blogId=${b.blogId}">修改</a>
                                     <button type="button" class="btn btn-danger" onclick="del('${appServer}/')">删除
                                     </button>
 

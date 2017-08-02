@@ -24,7 +24,7 @@ public class BlogService extends BaseServiceAbstract<Blog>{
     }
 
     @Override
-    public Blog Save(Blog entity) {
+    public Blog save(Blog entity) {
         return blogDao.save(entity);
     }
 

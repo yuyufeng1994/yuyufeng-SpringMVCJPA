@@ -25,7 +25,7 @@ public class CatalogService extends BaseServiceAbstract<Catalog> {
     }
 
     @Override
-    public Catalog Save(Catalog entity) {
+    public Catalog save(Catalog entity) {
         return catalogDao.save(entity);
     }
 

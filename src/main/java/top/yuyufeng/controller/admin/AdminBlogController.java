@@ -7,12 +7,21 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import top.yuyufeng.entity.Blog;
+import top.yuyufeng.entity.Catalog;
 import top.yuyufeng.service.BlogService;
+import top.yuyufeng.service.CatalogService;
 import top.yuyufeng.utils.PageUtil;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by yuyufeng on 2017/8/1.
@@ -23,6 +32,9 @@ public class AdminBlogController {
 
     @Autowired
     private BlogService blogService;
+
+    @Autowired
+    private CatalogService catalogService;
 
     @RequestMapping(value = "/list/{pageNo}", method = RequestMethod.GET)
     public String toList(Model model, @PathVariable("pageNo") Integer pageNo) {
@@ -35,17 +47,37 @@ public class AdminBlogController {
         return "admin/blog/list";
     }
 
-    @RequestMapping(value = "/save/{blogId}", method = RequestMethod.GET)
-    public String toSave(Model model, @PathVariable("blogId") Long blogId, String returnUrl) {
-        Blog blog = blogService.findOneById(blogId);
-        model.addAttribute("blog", blog);
+    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    public String toSave(Model model, Long blogId, String returnUrl) {
+        List<Catalog> catalogs = catalogService.findPage(null).getContent();
+        if (!StringUtils.isEmpty(blogId)) {
+            Blog blog = blogService.findOneById(blogId);
+            model.addAttribute("blog", blog);
+            for (int i = 0; i < catalogs.size(); i++) {
+                for (Catalog catalog : blog.getCatalogs()) {
+                    if (catalogs.get(i).getCatalogId().equals(catalog.getCatalogId())) {
+                        catalogs.get(i).setChecked("checked='checked'");
+                    }
+                }
+
+            }
+        }
+        model.addAttribute("catalogs", catalogs);
         model.addAttribute("returnUrl", returnUrl);
         return "admin/blog/save";
     }
 
     @RequestMapping(value = "/doSave", method = RequestMethod.POST)
-    public String doSave(Model model, Blog blog, String returnUrl) {
-        System.out.println(blog);
+    public String doSave(Model model, Blog blog, String returnUrl, Long[] catalogIds) {
+        Set<Catalog> catalogs = new HashSet<>();
+        for (int i = 0; i < catalogIds.length; i++) {
+            Catalog e = new Catalog();
+            e.setCatalogId(catalogIds[i]);
+            catalogs.add(e);
+        }
+        blog.setCatalogs(catalogs);
+        blog.setUpdateTime(new Date());
+        blogService.save(blog);
         return "redirect:" + returnUrl;
     }
 

@@ -17,9 +17,11 @@ public class Catalog {
     private Long catalogId;
     private String catalogName;
     private String catalogBrief;
+    @Transient
+    private String checked = "";
 
     @OrderBy("blogId desc")
-    @ManyToMany(cascade ={CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "catalogs")
+    @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "catalogs")
     private Set<Blog> blogs = new HashSet<>();
 
 
@@ -53,6 +55,14 @@ public class Catalog {
 
     public void setBlogs(Set<Blog> blogs) {
         this.blogs = blogs;
+    }
+
+    public String getChecked() {
+        return checked;
+    }
+
+    public void setChecked(String checked) {
+        this.checked = checked;
     }
 
     @Override

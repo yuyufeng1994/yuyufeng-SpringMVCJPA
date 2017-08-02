@@ -24,7 +24,7 @@ public class UserService extends BaseServiceAbstract<User> {
     }
 
     @Override
-    public User Save(User entity) {
+    public User save(User entity) {
         return userDao.save(entity);
     }
 

@@ -22,7 +22,7 @@ public abstract class BaseServiceAbstract<T> {
 
     public abstract T findOneById(Long id);
 
-    public abstract T Save(T entity);
+    public abstract T save(T entity);
 
     public abstract void deleteOne(Long id);
 

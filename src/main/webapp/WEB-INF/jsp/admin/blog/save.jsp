@@ -35,6 +35,7 @@
                 <form id="form-blog" action="${appServer}/admin/blog/doSave" method="post">
 
                     <input type="hidden" id="inputId" name="blogId" value="${blog.blogId}">
+                    <input type="hidden" id="returnUrl" name="returnUrl" value="${returnUrl}">
 
                     <div class="form-group">
                         <label for="inputTitle">标题</label>
@@ -57,9 +58,13 @@
                     </div>
 
                     <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Check me out
-                        </label>
+                        <c:forEach items="${catalogs}" var="c" >
+                            <label>
+                                <input type="checkbox" value="${c.catalogId}" name="catalogIds" ${c.checked}> ${c.catalogName}
+                            </label>
+                            |
+                        </c:forEach>
+                        <p class="help-block">请选择分类</p>
                     </div>
 
                     <button type="submit" class="btn btn-default" onclick="submitBlog()">提交</button>
