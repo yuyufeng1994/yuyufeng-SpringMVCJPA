@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-plus-sign"></i> 增加博客</button>
+                    <a type="button" class="btn btn-default" href="${appServer}/admin/blog/save?returnUrl=${appServer}/admin/blog/list/${page.number+1}"><i class="glyphicon glyphicon-plus-sign"></i> 增加博客</a>
                 </div>
 
                 <table width="100%"
@@ -47,14 +47,14 @@
                     <c:forEach items="${page.content}" var="b">
                         <tr>
                             <td>${b.blogId}</td>
-                            <td><a href="${appServer}/blog/${b.blogId}" target="_blank">${b.blogTitle}</a></td>
+                            <td><a href="${appServer}/blog/content/${b.blogId}" target="_blank">${b.blogTitle}</a></td>
                             <td><fmt:formatDate value="${b.updateTime}" type="both"
                                                 pattern="yyyy-MM-dd HH:mm:ss"/></td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="...">
-                                    <a type="button" class="btn btn-warning"
+                                    <a type="button" class="btn btn-default"
                                        href="${appServer}/admin/blog/save?returnUrl=${appServer}/admin/blog/list/${page.number+1}&blogId=${b.blogId}">修改</a>
-                                    <button type="button" class="btn btn-danger" onclick="del('${appServer}/')">删除
+                                    <button type="button" class="btn btn-danger" onclick="del('${appServer}/admin/blog/doDelete?returnUrl=${appServer}/admin/blog/list/${page.number+1}&blogId=${b.blogId}')">删除
                                     </button>
 
                                     <div class="btn-group" role="group">
