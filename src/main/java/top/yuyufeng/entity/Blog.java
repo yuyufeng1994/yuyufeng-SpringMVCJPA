@@ -16,6 +16,8 @@ public class Blog {
     private Long blogId;
     private String blogTitle;
     private String blogBrief;
+    @Lob
+    @Basic(fetch=FetchType.LAZY)
     private String blogContent;
     private String blogImage;
     private Date createTime;

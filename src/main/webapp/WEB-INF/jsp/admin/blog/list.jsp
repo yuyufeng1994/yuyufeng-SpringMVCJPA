@@ -20,17 +20,21 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">文章列表</h1>
+                <h1 class="page-header">博客列表</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-plus-sign"></i> 增加博客</button>
+                </div>
+
                 <table width="100%"
                        class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline collapsed"
                        id="dataTables-example" role="grid" aria-describedby="dataTables-example_info"
-                       style="width: 100%;">
+                       style="width: 100%;margin-top: 10px">
                     <thead>
                     <tr role="row">
                         <th>ID</th>
@@ -40,49 +44,59 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <%--<c:forEach items="${page.list}" var="a">
+                    <c:forEach items="${page.content}" var="b">
                         <tr>
-                            <td>${a.articleId}</td>
-                            <td><a href="${appServer}/article/${a.articleId}" target="_blank">${a.articleTitle}</a></td>
-                            <td><fmt:formatDate value="${a.articleTime}" type="both"
+                            <td>${b.blogId}</td>
+                            <td><a href="${appServer}/blog/${b.blogId}" target="_blank">${b.blogTitle}</a></td>
+                            <td><fmt:formatDate value="${b.updateTime}" type="both"
                                                 pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                            <td><a href="${appServer}/admin/article/edit/${a.articleId}?pageNo=${page.pageNum}"
-                                   class="btn btn-info">修改</a>
-                                <button class="btn btn-danger"
-                                        onclick="del('${appServer}/admin/article/delete/${a.articleId}?pageNo=${page.pageNum}')">
-                                    删除
-                                </button>
-                                <button class="btn btn-primary"
-                                        onclick="createIndex('${a.articleId}')">
-                                    索引
-                                </button>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="...">
+                                    <a type="button" class="btn btn-warning"
+                                       href="${appServer}/admin/blog/save/${b.blogId}?returnUrl=${appServer}/admin/blog/list/${page.number+1}">修改</a>
+                                    <button type="button" class="btn btn-danger" onclick="del('${appServer}/')">删除
+                                    </button>
+
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            索引
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">生成索引</a></li>
+                                            <li><a href="#">删除索引</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </td>
+
                         </tr>
-                    </c:forEach>--%>
+                    </c:forEach>
                     </tbody>
                 </table>
-                <%--<!-- Pager -->
+                <!-- Pager -->
                 <ul class="pagination">
-                    <c:if test="${page.pageNum != 1}">
-                        <li><a href="${appServer}/admin/article/manage/1">&laquo;</a></li>
+                    <c:if test="${page.number+1 != 1}">
+                        <li><a href="${appServer}/admin/blog/list/1">&laquo;</a></li>
                     </c:if>
-                    <c:forEach items="${page.navigatepageNums}" var="c">
-                        <c:if test="${c == page.pageNum}">
+                    <c:forEach items="${pages}" var="c">
+                        <c:if test="${c == page.number+1}">
                             <li class="active">
                                 <a>${c}</a>
                             </li>
                         </c:if>
-                        <c:if test="${c != page.pageNum}">
+                        <c:if test="${c != page.number+1}">
                             <li>
-                                <a href="${appServer}/admin/article/manage/${c}">${c}</a>
+                                <a href="${appServer}/admin/blog/list/${c}">${c}</a>
                             </li>
                         </c:if>
                     </c:forEach>
-                    <c:if test="${page.pageNum != page.pages}">
-                        <li><a href="${appServer}/admin/article/manage/${page.pages}">&raquo;</a></li>
+                    <c:if test="${page.number+1 != page.totalPages}">
+                        <li><a href="${appServer}/admin/blog/list/${page.totalPages}">&raquo;</a></li>
                     </c:if>
 
-                </ul>--%>
+                </ul>
             </div>
         </div>
     </div>

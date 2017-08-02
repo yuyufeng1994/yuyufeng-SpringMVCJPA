@@ -19,6 +19,8 @@
 <link rel="shortcut icon" href="${staticServer}/static/image/icon.png" type="image/x-icon" />
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="${staticServer}/static/vendor/bootstrap/css/bootstrap.min.css" />
+
+<link rel="stylesheet" href="${staticServer}/static/vendor/bootstrap/css/bootstrap-theme.min.css" />
 <!-- MetisMenu CSS -->
 <link rel="stylesheet" href="${staticServer}/static/vendor/metisMenu/metisMenu.min.css" />
 <!-- Custom CSS -->

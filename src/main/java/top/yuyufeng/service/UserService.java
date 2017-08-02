@@ -6,40 +6,40 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import top.yuyufeng.dao.BlogDao;
+import top.yuyufeng.dao.UserDao;
 import top.yuyufeng.entity.Blog;
 import top.yuyufeng.entity.User;
 
 import java.util.List;
 
 /**
- * Created by yuyufeng on 2017/8/1.
+ * Created by yuyufeng on 2017/8/2.
  */
 @Service
-public class BlogService extends BaseServiceAbstract<Blog>{
+public class UserService extends BaseServiceAbstract<User> {
 
     @Override
-    public Blog findOneById(Long id) {
-        return blogDao.findOne(id);
+    public User findOneById(Long id) {
+        return userDao.findOne(id);
     }
 
     @Override
-    public Blog Save(Blog entity) {
-        return blogDao.save(entity);
+    public User Save(User entity) {
+        return userDao.save(entity);
     }
 
     @Override
     public void deleteOne(Long id) {
-        blogDao.delete(id);
+        userDao.delete(id);
     }
 
     @Override
-    public Page<Blog> findPage(Pageable pageable) {
+    public Page<User> findPage(Pageable pageable) {
         if(pageable  == null){
-            List<Blog> list =  IteratorUtils.toList(blogDao.findAll().iterator());
-            Page<Blog> page = new PageImpl<Blog>(list);
+            List<User> list =  IteratorUtils.toList(userDao.findAll().iterator());
+            Page<User> page = new PageImpl<User>(list);
             return page;
         }
-        return blogDao.findAll(pageable);
+        return userDao.findAll(pageable);
     }
 }

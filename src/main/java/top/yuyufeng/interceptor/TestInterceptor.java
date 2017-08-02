@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import top.yuyufeng.entity.User;
+import top.yuyufeng.utils.SessionUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +39,10 @@ public class TestInterceptor implements HandlerInterceptor {
     // 用于身份认真、身份授权
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
-
+        User user = new User();
+        user.setUserId(2l);
+        User sessionUser = SessionUtil.getSessionUser(request);
+        SessionUtil.setSessionUser(request, user);
         return true;
     }
 

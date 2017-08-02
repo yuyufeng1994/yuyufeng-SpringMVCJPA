@@ -11,6 +11,7 @@
     <util:map id="urlMap" map-class="java.util.HashMap">
         <entry key="appServer" value="${server.app}"/>
         <entry key="staticServer" value="${server.static}"/>
+        <entry key="fileServer" value="${server.file}"/>
     </util:map>
 
     <util:map id="propertiesMap" map-class="java.util.HashMap">

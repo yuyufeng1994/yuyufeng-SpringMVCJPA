@@ -16,7 +16,7 @@ import java.util.Set;
 /**
  * Created by yuyufeng on 2017/8/1.
  */
-@Transactional//junit懒加载
+//@Transactional//junit懒加载
 public class BlogDaoTest extends BaseDaoTest {
     @Autowired
     private BlogDao blogDao;
@@ -38,26 +38,25 @@ public class BlogDaoTest extends BaseDaoTest {
 
         Set<Catalog> catalogs = new HashSet<>();
         Catalog ca1 = new Catalog();
-        ca1.setCatalogId(1l);
+        ca1.setCatalogId(3l);
         catalogs.add(ca1);
 
         Catalog ca2 = new Catalog();
-        ca2.setCatalogId(2l);
+        ca2.setCatalogId(4l);
         catalogs.add(ca2);
 
-//        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 30; i++) {
             Blog blog = new Blog();
-            blog.setBlogTitle("博客标题");
-            blog.setBlogBrief("博客简介");
-            blog.setBlogContent("博客内容");
-            blog.setBlogImage("博客图片地址");
+            blog.setBlogTitle("博客标题"+i);
+            blog.setBlogBrief("博客简介"+i);
+            blog.setBlogContent("博客内容"+i);
+            blog.setBlogImage("博客图片地址"+i);
             blog.setCreateTime(new Date());
             blog.setUpdateTime(new Date());
-//            blog.setBlogUser(user);
-
+            blog.setBlogUser(user);
             blog.setCatalogs(catalogs);
             blogDao.save(blog);
             System.out.println(blog);
-//        }
+        }
     }
 }

@@ -25,7 +25,7 @@
         <div class="col-md-8">
 
             <h1 class="page-header">
-                我的博客
+                最新博客
                 <small>yuyufeng's blog</small>
             </h1>
 

@@ -29,7 +29,7 @@
                     <a href="${appServer}/admin/index"><i class="glyphicon glyphicon-home"></i> 主页</a>
                 </li>
                 <li>
-                    <a href="${appServer}/admin/article"><i class="glyphicon glyphicon-text-background"></i> 文章</a>
+                    <a href="${appServer}/admin/blog/list/0"><i class="glyphicon glyphicon-text-background"></i> 文章</a>
                 </li>
                 <li class="divider"></li>
                 <li>
@@ -60,13 +60,13 @@
                     <a href="${appServer}/admin/index"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="${appServer}/admin"><i class="glyphicon glyphicon-text-background"></i> Article<span class="fa arrow"></span></a>
+                    <a href="${appServer}/admin/blog/"><i class="glyphicon glyphicon-text-background"></i> 博客管理 <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li>
+                        <%--<li>
                             <a href="${appServer}/admin/article/new?pageNo=1">发表文章</a>
-                        </li>
+                        </li>--%>
                         <li>
-                            <a href="${appServer}/admin/article/manage/1">文章管理</a>
+                            <a href="${appServer}/admin/blog/list/1">博客列表</a>
                         </li>
 
                     </ul>

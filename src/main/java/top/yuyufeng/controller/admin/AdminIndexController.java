@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/admin")
 public class AdminIndexController {
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String toIndex() {
+        return "admin/index";
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String toLogin() {
         return "admin/login";
