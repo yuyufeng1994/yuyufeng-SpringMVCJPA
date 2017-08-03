@@ -173,6 +173,7 @@
     </dependencies>
     <build>
         <finalName>yuyufeng</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -212,8 +213,6 @@
                     </connectors>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
-
 </project>
