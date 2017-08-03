@@ -60,7 +60,7 @@
                     <a href="${appServer}/admin/index"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="${appServer}/admin/blog/"><i class="glyphicon glyphicon-text-background"></i> 博客管理 <span class="fa arrow"></span></a>
+                    <a href="${appServer}/admin/blog"><i class="glyphicon glyphicon-text-background"></i> 博客管理 <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <%--<li>
                             <a href="${appServer}/admin/article/new?pageNo=1">发表文章</a>

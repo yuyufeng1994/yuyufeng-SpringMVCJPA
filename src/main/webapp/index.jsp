@@ -4,9 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="yuyufeng">
-<p>跳转到主页...</p>
+<p>跳转到博客主页...</p>
 <script>
-    setTimeout(function () {
-        window.location.href="/blog/index"
-    },1000)
+    window.location.href="/blog/index"
 </script>
