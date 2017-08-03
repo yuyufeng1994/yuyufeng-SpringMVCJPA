@@ -16,6 +16,7 @@ import top.yuyufeng.entity.Catalog;
 import top.yuyufeng.service.BlogService;
 import top.yuyufeng.service.CatalogService;
 import top.yuyufeng.utils.PageUtil;
+import top.yuyufeng.utils.SessionUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -68,7 +69,7 @@ public class AdminBlogController {
     }
 
     @RequestMapping(value = "/doSave", method = RequestMethod.POST)
-    public String doSave(Model model, Blog blog, String returnUrl, Long[] catalogIds) {
+    public String doSave(Model model, Blog blog, String returnUrl, Long[] catalogIds,HttpServletRequest request) {
         Set<Catalog> catalogs = new HashSet<>();
         for (int i = 0; i < catalogIds.length; i++) {
             Catalog e = new Catalog();
@@ -77,7 +78,17 @@ public class AdminBlogController {
         }
         blog.setCatalogs(catalogs);
         blog.setUpdateTime(new Date());
+        if (StringUtils.isEmpty(blog.getBlogId())){
+            blog.setCreateTime(new Date());
+            blog.setBlogUser(SessionUtil.getSessionUser(request));
+        }
         blogService.save(blog);
+        return "redirect:" + returnUrl;
+    }
+
+    @RequestMapping(value = "/doDelete", method = RequestMethod.GET)
+    public String doDelete(Long blogId, String returnUrl) {
+        blogService.deleteOne(blogId);
         return "redirect:" + returnUrl;
     }
 
