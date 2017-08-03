@@ -47,10 +47,6 @@
             </pattern>
         </encoder>
     </appender>
- 
-     
-   
-     
      
     <!-- root级别   DEBUG -->
     <root>
