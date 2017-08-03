@@ -59,4 +59,8 @@
         <servlet-name>springmvc</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <error-page>
+        <location>/WEB-INF/jsp/404.jsp</location>
+    </error-page>
 </web-app>

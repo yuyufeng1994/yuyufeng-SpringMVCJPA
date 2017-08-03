@@ -16,8 +16,4 @@ public class AdminIndexController {
         return "admin/index";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String toLogin() {
-        return "admin/login";
-    }
 }

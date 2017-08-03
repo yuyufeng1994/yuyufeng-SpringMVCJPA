@@ -41,7 +41,7 @@
                     <br/>
                 </c:if>
                 <c:forEach items="${b.catalogs}" var="c">
-                    <span class="label label-primary">${c.catalogName}</span>
+                    <a class="label label-primary" href="${appServer}/blog/list-catalog/${c.catalogId}/1">${c.catalogName}</a>
                 </c:forEach>
                 <hr>
             </c:forEach>

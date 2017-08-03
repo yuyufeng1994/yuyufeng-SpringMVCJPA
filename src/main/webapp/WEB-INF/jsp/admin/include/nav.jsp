@@ -14,7 +14,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#" >YuYu后台管理</a>
+        <a class="navbar-brand" href="${appServer}/admin/index" >yuyufeng.top's Admin</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -33,7 +33,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="${appServer}/quit"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
+                    <a href="${appServer}/admin/quit"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->

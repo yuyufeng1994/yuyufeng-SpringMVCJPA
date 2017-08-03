@@ -29,4 +29,5 @@
 <link rel="stylesheet" href="${staticServer}/static/vendor/metisMenu/metisMenu.min.css" />
 <!-- Custom Fonts -->
 <link rel="stylesheet" href="${staticServer}/static/vendor/font-awesome/css/font-awesome.min.css" />
+<link href="${staticServer}/static/css/admin.css" rel="stylesheet">
 <title>yuyufeng的后台管理</title>

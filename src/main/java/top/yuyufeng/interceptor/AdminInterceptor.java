@@ -2,21 +2,29 @@ package top.yuyufeng.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import top.yuyufeng.dto.CataLogDto;
 import top.yuyufeng.entity.User;
+import top.yuyufeng.service.CatalogService;
 import top.yuyufeng.utils.SessionUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
- * 测试拦截器
+ * 博客拦截器
  *
  * @author yyf
  *
  */
-public class TestInterceptor implements HandlerInterceptor {
+public class AdminInterceptor implements HandlerInterceptor {
+
+
+    @Autowired
+    private CatalogService catalogService;
 
     private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 
@@ -25,7 +33,6 @@ public class TestInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object object,
                                 Exception exception) throws Exception {
-        LOG.info("TestInterceptor");
     }
 
     // 进入Handler方法之后，返回modelAndView之前执行
@@ -33,18 +40,23 @@ public class TestInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object object,
                            ModelAndView modelAndView) throws Exception {
+        //装载分类
+
     }
 
     // 进入Handler方法之前
     // 用于身份认真、身份授权
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
-      /*  User user = new User();
-        user.setUserId(2l);
+        String uri = request.getRequestURI();
+        if("/admin/login".equals(uri) || "/admin/doLogin".equals(uri) || "/admin/doQuit".equals(uri)){
+            return true;
+        }
         User sessionUser = SessionUtil.getSessionUser(request);
         if(sessionUser == null){
-            SessionUtil.setSessionUser(request, user);
-        }*/
+            request.getRequestDispatcher("/WEB-INF/jsp/admin/login.jsp").forward(request,response);
+            return false;
+        }
         return true;
     }
 

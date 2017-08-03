@@ -18,7 +18,7 @@ public class User{
     @Column(length = 10)
     private Long userId;
 
-    @Column(length = 10)
+    @Column(length = 10,unique = true)
     private String userAccount;
 
     @Column(length = 50)
