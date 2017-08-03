@@ -23,6 +23,19 @@
         </div>
     </div>
 </div>
+<footer class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <p>Copyright &copy; 心得站点 2017 </p>
+            <p><a href="http://www.miitbeian.gov.cn/">浙ICP备17023003号</a></p>
+            <p><img src="${staticServer}/static/image/备案图标.png"> <a
+                    href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33048202000193">浙公网安备
+                33048202000193号</a></p>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</footer>
 <!-- jQuery -->
 <script src="${staticServer}/static/vendor/jquery/jquery.min.js"></script>
 

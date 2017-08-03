@@ -24,10 +24,10 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-            <h1 class="page-header">
-                博客
-                <small>yuyufeng's blog</small>
-            </h1>
+            <h3 class="page-header">
+                [${catalog.catalogName}]
+                <small>${catalog.catalogBrief}</small>
+            </h3>
 
             <c:forEach items="${page.content}" var="b">
                 <!-- First Blog Post -->
@@ -50,12 +50,12 @@
             <ul class="pager">
                 <c:if test="${!page.first}">
                     <li class="previous">
-                        <a href="${appServer}/blog/list-catalog/${catalogId}/${page.number}">&larr; 上一页</a>
+                        <a href="${appServer}/blog/list-catalog/${catalog.catalogId}/${page.number}">&larr; 上一页</a>
                     </li>
                 </c:if>
                 <c:if test="${!page.last}">
                     <li class="next">
-                        <a href="${appServer}/blog/list-catalog/${catalogId}/${page.number+2}">下一页 &rarr;</a>
+                        <a href="${appServer}/blog/list-catalog/${catalog.catalogId}/${page.number+2}">下一页 &rarr;</a>
                     </li>
                 </c:if>
             </ul>

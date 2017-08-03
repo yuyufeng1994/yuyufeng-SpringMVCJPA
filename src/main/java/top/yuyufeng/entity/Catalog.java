@@ -27,7 +27,6 @@ public class Catalog {
     @OrderBy("updateTime desc")
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "catalogs")
     private Set<Blog> blogs = new HashSet<>();
-
     @Transient
     private String checked = "";
 

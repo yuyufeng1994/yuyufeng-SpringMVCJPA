@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import top.yuyufeng.dto.CataLogDto;
 import top.yuyufeng.entity.Catalog;
 import top.yuyufeng.entity.User;
 import top.yuyufeng.service.CatalogService;
@@ -13,6 +14,7 @@ import top.yuyufeng.utils.SessionUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * 博客拦截器
@@ -41,8 +43,8 @@ public class BlogInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object object,
                            ModelAndView modelAndView) throws Exception {
         //装载分类
-        Page<Catalog> page = catalogService.findPage(null);
-        modelAndView.addObject("catalogs",page.getContent());
+        List<CataLogDto> catalogs = catalogService.findAllCatalogs();
+        modelAndView.addObject("catalogs",catalogs);
     }
 
     // 进入Handler方法之前

@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>--%>
 <!-- Blog Search Well -->
 <div class="well">
     <h4>博客搜索</h4>
@@ -29,7 +29,7 @@
             <div class="col-lg-6">
                 <ul class="list-unstyled">
                     <c:forEach items="${catalogs}" var="c" varStatus="index">
-                        <li><a href="${appServer}/blog/list-catalog/${c.catalogId}/1" title="${c.catalogBrief} ">${c.catalogName} [${fn:length(c.blogs)}]</a> </li>
+                        <li><a href="${appServer}/blog/list-catalog/${c.catalogId}/1" title="${c.catalogBrief} ">${c.catalogName} [${c.blogsSize}]</a> </li>
                         <c:if test="${(index.count)%4 == 0}">
                 </ul>
             </div>

@@ -9,6 +9,7 @@ import java.util.Set;
  * Created by yuyufeng on 2017/8/1.
  */
 @Entity
+@Cacheable
 @Table(name = "blog_info")
 public class Blog {
     @Id // 主键

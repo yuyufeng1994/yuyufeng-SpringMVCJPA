@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import top.yuyufeng.dao.CatalogDao;
+import top.yuyufeng.dto.CataLogDto;
 import top.yuyufeng.entity.Blog;
 import top.yuyufeng.entity.Catalog;
 import top.yuyufeng.entity.User;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 @Service
 public class CatalogService extends BaseServiceAbstract<Catalog> {
+
 
     @Override
     public Catalog findOneById(Long id) {
@@ -42,5 +44,10 @@ public class CatalogService extends BaseServiceAbstract<Catalog> {
             return page;
         }
         return catalogDao.findAll(pageable);
+    }
+
+    public List<CataLogDto> findAllCatalogs() {
+        List<CataLogDto> list = nativeDao.findAllCataLogs();
+        return list;
     }
 }

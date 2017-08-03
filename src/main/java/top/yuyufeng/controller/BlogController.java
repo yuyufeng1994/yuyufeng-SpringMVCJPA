@@ -59,8 +59,9 @@ public class BlogController {
         Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
         Pageable pageable = new PageRequest(--pageNo, 10,sort);
         Page<Blog> page = blogService.findBlogPageByCatalogId(catalogId,pageable);
+        Catalog catalog = catalogService.findOneById(catalogId);
         model.addAttribute("page", page);
-        model.addAttribute("catalogId", catalogId);
+        model.addAttribute("catalog", catalog);
         return "blog/list";
     }
 }

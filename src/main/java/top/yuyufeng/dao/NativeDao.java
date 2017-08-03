@@ -1,36 +1,26 @@
-package dao;
+package top.yuyufeng.dao;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.stereotype.Repository;
 import top.yuyufeng.dto.CataLogDto;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Spring data jpa native sql test
- * Created by yuyufeng on 2017/4/21.
+ * Created by yuyufeng on 2017/8/3.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring/applicationContext.xml"})
-public class NativeSqlTest {
+@Repository
+public class NativeDao {
     @PersistenceContext//(unitName="")
     private EntityManager em;
-
-    @Test
-    public void test() {
-        System.out.println("NativeSqlTest.test");
-    }
-
-    @Test
-    public void testSelectAllCatalogs() {
+    public List<CataLogDto> findAllCataLogs(){
         Query query = em.createNativeQuery("SELECT catalogId,catalogName,catalogBrief,(SELECT count(blogId) FROM blog_catalog_info WHERE catalogId = catalog_info.catalogId) as blogsSize FROM catalog_info");
         List<Object[]> list= query.getResultList();
+        List<CataLogDto> cataLogDtos = new ArrayList<>();
         for (Object[] objects : list) {
             CataLogDto cataLogDto = new CataLogDto();
             BigInteger catalogId = (BigInteger) objects[0];
@@ -39,9 +29,8 @@ public class NativeSqlTest {
             cataLogDto.setCatalogName((String) objects[1]);
             cataLogDto.setCatalogBrief((String) objects[2]);
             cataLogDto.setBlogsSize(blogsSize.intValue());
-            System.out.println(cataLogDto);
+            cataLogDtos.add(cataLogDto);
         }
-
-
+        return cataLogDtos;
     }
 }

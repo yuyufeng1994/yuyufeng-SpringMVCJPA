@@ -92,6 +92,7 @@
                     <button type="submit" class="btn btn-default" onclick="submitBlog()">提交</button>
 
                 </form>
+                <hr/>
             </div>
         </div>
     </div>
