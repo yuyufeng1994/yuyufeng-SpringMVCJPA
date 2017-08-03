@@ -64,6 +64,10 @@
 			<mvc:mapping path="/**" />
 			<bean class="top.yuyufeng.interceptor.URLBrokerLauncherInterceptor"></bean>
 		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/blog/**" />
+			<bean class="top.yuyufeng.interceptor.BlogInterceptor"></bean>
+		</mvc:interceptor>
 		<!--/** 表示所有url 包括子url路径 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />

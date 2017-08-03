@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import top.yuyufeng.dao.BlogDao;
 import top.yuyufeng.dao.CatalogDao;
 import top.yuyufeng.dao.UserDao;
+import top.yuyufeng.entity.Blog;
 
 /**
  * Created by yuyufeng on 2017/8/2.
@@ -27,6 +28,5 @@ public abstract class BaseServiceAbstract<T> {
     public abstract void deleteOne(Long id);
 
     public abstract Page<T> findPage(Pageable pageable);
-
 
 }

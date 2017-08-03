@@ -15,18 +15,28 @@ import java.util.Set;
 public class User{
     @Id // 主键
     @GeneratedValue(strategy = GenerationType.AUTO) // 自动增长类型
+    @Column(length = 10)
     private Long userId;
+
+    @Column(length = 10)
     private String userAccount;
+
+    @Column(length = 50)
     private String userName;
+
+    @Column(length = 20)
     private String userPassword;
     /**
      * 1 正常  / 0 锁定
      */
+    @Column(length = 1)
     private String userStatus;
+
     private Date createTime;
     /**
      * 1 超级管理员  /  2 普通用户
      */
+    @Column(length = 1)
     private String accountType;
 
     public String getAccountType() {

@@ -14,16 +14,22 @@ import java.util.Set;
 public class Catalog {
     @Id // 主键
     @GeneratedValue(strategy = GenerationType.AUTO) // 自动增长类型
+    @Column(length = 10)
     private Long catalogId;
-    private String catalogName;
-    private String catalogBrief;
-    @Transient
-    private String checked = "";
 
-    @OrderBy("blogId desc")
+    @Column(length = 20)
+    private String catalogName;
+
+    @Column(length = 230)
+    private String catalogBrief;
+
+
+    @OrderBy("updateTime desc")
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "catalogs")
     private Set<Blog> blogs = new HashSet<>();
 
+    @Transient
+    private String checked = "";
 
     public Long getCatalogId() {
         return catalogId;

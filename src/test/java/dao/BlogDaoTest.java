@@ -2,6 +2,10 @@ package dao;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 import top.yuyufeng.dao.BlogDao;
 import top.yuyufeng.dao.CatalogDao;
@@ -58,5 +62,12 @@ public class BlogDaoTest extends BaseDaoTest {
             blogDao.save(blog);
             System.out.println(blog);
         }
+    }
+
+    @Test
+    public void testFindBlogPageByCatalogId(){
+        Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
+        Pageable pageable = new PageRequest(2, 3,sort);
+        Page<Blog> page = blogDao.findBlogPageByCatalogId(2l,pageable);
     }
 }

@@ -16,7 +16,7 @@ import java.util.List;
  * Created by yuyufeng on 2017/8/1.
  */
 @Service
-public class BlogService extends BaseServiceAbstract<Blog>{
+public class BlogService extends BaseServiceAbstract<Blog> {
 
     @Override
     public Blog findOneById(Long id) {
@@ -35,11 +35,17 @@ public class BlogService extends BaseServiceAbstract<Blog>{
 
     @Override
     public Page<Blog> findPage(Pageable pageable) {
-        if(pageable  == null){
-            List<Blog> list =  IteratorUtils.toList(blogDao.findAll().iterator());
+        if (pageable == null) {
+            List<Blog> list = IteratorUtils.toList(blogDao.findAll().iterator());
             Page<Blog> page = new PageImpl<Blog>(list);
             return page;
         }
         return blogDao.findAll(pageable);
+    }
+
+
+    public Page<Blog> findBlogPageByCatalogId(Long catalogId, Pageable pageable) {
+        Page<Blog> page = blogDao.findBlogPageByCatalogId(catalogId, pageable);
+        return page;
     }
 }

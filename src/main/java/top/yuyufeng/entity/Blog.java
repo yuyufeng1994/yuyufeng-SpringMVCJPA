@@ -13,23 +13,35 @@ import java.util.Set;
 public class Blog {
     @Id // 主键
     @GeneratedValue(strategy = GenerationType.AUTO) // 自动增长类型
+    @Column(length = 10)
     private Long blogId;
+
+    @Column(length = 200)
     private String blogTitle;
+
+    @Column(length = 200)
     private String blogBrief;
+
     @Lob
     @Basic(fetch=FetchType.LAZY)
     private String blogContent;
+
+    @Column(length = 200)
     private String blogImage;
+
+    @Column(updatable=false)
     private Date createTime;
+
     private Date updateTime;
 
     @ManyToOne(cascade = { CascadeType.REFRESH })
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userId",updatable = false)
     private User blogUser;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinTable(name = "blog_catalog_info", joinColumns = { @JoinColumn(name = "blogId") }, inverseJoinColumns = {
             @JoinColumn(name = "catalogId") })
+    @OrderBy("catalogId desc")
     private Set<Catalog> catalogs = new HashSet<>();
 
     public Long getBlogId() {

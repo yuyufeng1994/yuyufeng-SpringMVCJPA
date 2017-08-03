@@ -28,16 +28,9 @@
 
             <!-- Title -->
             <h1>${blog.blogTitle}</h1>
-
-            <!-- Author -->
-            <p class="lead">
-                作者： <a href="#">${blog.blogUser.userName}</a>
-            </p>
-
             <hr>
-
             <!-- Date/Time -->
-            <p><span class="glyphicon glyphicon-time"></span> Posted on  <fmt:formatDate value="${blog.updateTime}" type="both"   pattern="yyyy/MM/dd HH:mm:ss"/></p>
+            <p><span class="glyphicon glyphicon-time"></span> Posted on  <fmt:formatDate value="${blog.updateTime}" type="both"   pattern="yyyy/MM/dd HH:mm:ss"/>  作者:<a href="index.php">${blog.blogUser.userName}</a></p>
 
             <hr>
 
@@ -85,7 +78,7 @@
                 </div>
             </div>--%>
             <!--PC版-->
-            <div id="SOHUCS" sid="articleID"></div>
+            <div id="SOHUCS" sid="blog_${blog.blogId}"></div>
             <script charset="utf-8" type="text/javascript"
                     src="https://changyan.sohu.com/upload/changyan.js"></script>
             <script type="text/javascript">

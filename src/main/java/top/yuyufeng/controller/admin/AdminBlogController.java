@@ -69,16 +69,18 @@ public class AdminBlogController {
     }
 
     @RequestMapping(value = "/doSave", method = RequestMethod.POST)
-    public String doSave(Model model, Blog blog, String returnUrl, Long[] catalogIds,HttpServletRequest request) {
+    public String doSave(Model model, Blog blog, String returnUrl, Long[] catalogIds, HttpServletRequest request) {
         Set<Catalog> catalogs = new HashSet<>();
-        for (int i = 0; i < catalogIds.length; i++) {
-            Catalog e = new Catalog();
-            e.setCatalogId(catalogIds[i]);
-            catalogs.add(e);
+        if (catalogIds != null) {
+            for (int i = 0; i < catalogIds.length; i++) {
+                Catalog e = new Catalog();
+                e.setCatalogId(catalogIds[i]);
+                catalogs.add(e);
+            }
         }
         blog.setCatalogs(catalogs);
         blog.setUpdateTime(new Date());
-        if (StringUtils.isEmpty(blog.getBlogId())){
+        if (StringUtils.isEmpty(blog.getBlogId())) {
             blog.setCreateTime(new Date());
             blog.setBlogUser(SessionUtil.getSessionUser(request));
         }
