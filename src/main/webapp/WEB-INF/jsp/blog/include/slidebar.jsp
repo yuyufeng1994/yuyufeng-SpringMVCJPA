@@ -46,8 +46,8 @@
 
 <!-- Side Widget Well -->
 <div class="well">
-    <h4>Side Widget Well</h4>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium
-        odit aliquam repellat tempore quos aspernatur vero.</p>
+    <h4>友情连接</h4>
+    <p><a href="http://www.shenfeichao.top">沈飞超的博客-分享计划</a></p>
+    <p><a href="http://www.yuyufeng.top">俞育峰的博客-心得站点</a></p>
 </div>
 
