@@ -49,7 +49,7 @@
     <h4>二维码</h4>
     <img id="decode-img" alt="加载中..." class="img-thumbnail">
     <script>
-        $("#decode-img").attr('src', 'http://127.0.0.1/common/stream/decode?content='+window.location.href);
+        $("#decode-img").attr('src', '${appServer}/common/stream/decode?content='+window.location.href);
     </script>
 </div>
 
