@@ -30,14 +30,19 @@
             </h1>
 
 
-            <h1>error</h1>
+
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="javascript:history.go(-1)">返回</a></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="alert alert-danger" role="alert"><i class="glyphicon glyphicon-warning-sign"></i> ${ex.message}</div>
+                </div>
+            </div>
 
         </div>
 
-        <!-- Blog Sidebar Widgets Column -->
-        <div class="col-md-4">
-            <%@include file="/WEB-INF/jsp/blog/include/slidebar.jsp" %>
-        </div>
+
 
     </div>
     <!-- /.row -->

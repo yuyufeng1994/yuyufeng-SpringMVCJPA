@@ -170,6 +170,19 @@
             <version>3.2.2</version>
         </dependency>
 
+        <!--start decodeQR-->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <!-- end decodeQR-->
+
     </dependencies>
     <build>
         <finalName>yuyufeng</finalName>

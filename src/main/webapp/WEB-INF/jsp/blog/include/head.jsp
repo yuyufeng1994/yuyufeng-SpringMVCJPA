@@ -16,7 +16,7 @@
 <meta name="author" content="俞育峰">
 <link rel="shortcut icon" href="${staticServer}/static/image/icon.png" type="image/x-icon" />
 
-<title>Blog Home - 心得站点</title>
+<title>博客 -- 心得站点</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="${staticServer}/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -30,3 +30,10 @@
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+<!-- jQuery -->
+<script src="${staticServer}/static/vendor/jquery/jquery.min.js"></script>
+<%--<script src="http://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>--%>
+
+<!-- Bootstrap Core JavaScript -->
+<%--<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
+<script src="${staticServer}/static/vendor/bootstrap/js/bootstrap.min.js"></script>

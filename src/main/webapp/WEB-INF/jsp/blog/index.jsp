@@ -35,12 +35,11 @@
                     <a href="${appServer}/blog/content/${b.blogId}">${b.blogTitle}</a>
                 </h3>
                 <p>${b.blogBrief}</p>
-                <p><span class="glyphicon glyphicon-time"></span> 发表于 <fmt:formatDate value="${b.updateTime}" type="both"   pattern="yyyy/MM/dd HH:mm:ss"/> | 作者：<a href="index.php">${b.blogUser.userName}</a> | 评论数：<span id = "sourceId::blog_${b.blogId}" class = "cy_cmt_count" ></span></p>
                 <c:if test="${!empty b.blogImage}">
                     <img class="img-responsive" src="${b.blogImage}" alt="">
                     <br/>
                 </c:if>
-
+                <p><span class="glyphicon glyphicon-time"></span> 发表于 <fmt:formatDate value="${b.updateTime}" type="both"   pattern="yyyy/MM/dd HH:mm:ss"/> | 作者：<a href="index.php">${b.blogUser.userName}</a> | 评论数：<span id = "sourceId::blog_${b.blogId}" class = "cy_cmt_count" ></span></p>
                 <c:forEach items="${b.catalogs}" var="c">
                     <a class="label label-primary" href="${appServer}/blog/list-catalog/${c.catalogId}/1">${c.catalogName}</a>
                 </c:forEach>

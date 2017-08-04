@@ -74,7 +74,7 @@
                         <label for="inputImage">封面图片地址</label>
                         <input type="text" class="form-control" id="inputImage" placeholder="封面图片地址" name="blogImage"
                                value="${blog.blogImage}">
-                        <p class="help-block">博客内容中上传的第一张上传图片会修改此项</p>
+                        <p class="help-block">博客内容中上传的第一张上传图片会修改此项(推荐使用900*300的图片)</p>
                     </div>
 
 

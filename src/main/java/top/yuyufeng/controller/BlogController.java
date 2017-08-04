@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import top.yuyufeng.entity.Blog;
 import top.yuyufeng.entity.Catalog;
+import top.yuyufeng.exception.BlogException;
 import top.yuyufeng.service.BlogService;
 import top.yuyufeng.service.CatalogService;
 
@@ -47,8 +48,11 @@ public class BlogController {
     }
 
     @RequestMapping(value = "/content/{blogId}", method = RequestMethod.GET)
-    public String toContent(Model model,@PathVariable("blogId") Long blogId) {
+    public String toContent(Model model,@PathVariable("blogId") Long blogId) throws BlogException {
         Blog blog = blogService.findOneById(blogId);
+        if(blog == null){
+            throw new BlogException("您要访问的博客不存在!");
+        }
         model.addAttribute("blog",blog);
         return "blog/content";
     }

@@ -1,15 +1,25 @@
 package top.yuyufeng.controller;
 
+import com.google.zxing.*;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.common.HybridBinarizer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -77,5 +87,18 @@ public class CommonController {
         } catch (IOException e) {
         }
         return null;
+    }
+
+    @RequestMapping("/stream/decode")
+    public void decodeQR(HttpServletRequest request,String content, HttpServletResponse response) throws IOException, WriterException {
+        OutputStream os = response.getOutputStream();
+        int width = 200; // 图像宽度
+        int height = 200; // 图像高度
+        String format = "png";// 图像类型
+        Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
+        hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+        BitMatrix bitMatrix = new MultiFormatWriter().encode(content,
+                BarcodeFormat.QR_CODE, width, height, hints);// 生成矩阵
+        MatrixToImageWriter.writeToStream(bitMatrix, format, os);
     }
 }
