@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <title>${blog.blogTitle} -- 心得站点</title>
+    <title>${blog.blogTitle} -- 博客 -- 心得站点</title>
     <%@include file="/WEB-INF/jsp/blog/include/head.jsp" %>
 </head>
 <body>

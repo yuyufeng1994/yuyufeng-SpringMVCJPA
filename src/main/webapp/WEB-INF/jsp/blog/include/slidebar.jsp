@@ -46,7 +46,7 @@
 <%--http://127.0.0.1/common/stream/decode?content=--%>
 <!-- Side Widget Well -->
 <div class="well">
-    <h4>二维码</h4>
+    <h4>扫一扫看博客</h4>
     <img id="decode-img" alt="加载中..." class="img-thumbnail">
     <script>
         $("#decode-img").attr('src', '${appServer}/common/stream/decode?content='+window.location.href);
