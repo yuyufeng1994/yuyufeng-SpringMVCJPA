@@ -12,13 +12,13 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "user_info")
-public class User{
+public class User {
     @Id // 主键
     @GeneratedValue(strategy = GenerationType.AUTO) // 自动增长类型
     @Column(length = 10)
     private Long userId;
 
-    @Column(length = 10,unique = true)
+    @Column(length = 10, unique = true)
     private String userAccount;
 
     @Column(length = 50)
@@ -38,6 +38,9 @@ public class User{
      */
     @Column(length = 1)
     private String accountType;
+
+    @Column(length = 50, unique = true)
+    private String userEmail;
 
     public String getAccountType() {
         return accountType;
@@ -93,5 +96,13 @@ public class User{
 
     public void setUserStatus(String userStatus) {
         this.userStatus = userStatus;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 }
