@@ -7,7 +7,7 @@ import org.springframework.util.StringUtils;
  * Created by yuyufeng on 2017/6/23.
  */
 public enum UserSatusEnum {
-    NORMAL("1", "正常"), LOCK("0", "锁定");
+    NORMAL("0", "正常"), LOCK("1", "冻结"), REVIEWING("2", "审核中");
     private String key;
     private String value;
 
@@ -16,7 +16,7 @@ public enum UserSatusEnum {
         this.value = value;
     }
 
-    public String getValue(String key) {
+    public static String getValue(String key) {
         if (StringUtils.isEmpty(key)) {
             return "";
         }
@@ -25,7 +25,7 @@ public enum UserSatusEnum {
                 return userSatusEnum.value;
             }
         }
-        return "";
+        return "unknow";
     }
 
     public String getKey() {

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import top.yuyufeng.constants.UserAccountTypeEnum;
+import top.yuyufeng.constants.UserSatusEnum;
 import top.yuyufeng.dto.CataLogDto;
 import top.yuyufeng.entity.User;
 import top.yuyufeng.exception.AuthorityException;
@@ -50,7 +51,7 @@ public class AdminInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
         String uri = request.getRequestURI();
-        if ("/admin/login".equals(uri) || "/admin/doLogin".equals(uri) || "/admin/doQuit".equals(uri)) {
+        if ("/admin/login".equals(uri) || "/admin/doLogin".equals(uri) || "/admin/quit".equals(uri)) {
             return true;
         }
         User sessionUser = SessionUtil.getSessionUser(request);
@@ -58,8 +59,11 @@ public class AdminInterceptor implements HandlerInterceptor {
             request.getRequestDispatcher("/WEB-INF/jsp/admin/login.jsp").forward(request, response);
             return false;
         }
-        if (!UserAccountTypeEnum.SUPER_MANAGER.getKey().equals(sessionUser.getAccountType())) {
+        if (!UserAccountTypeEnum.SUPER_MANAGER.getKey().equals(sessionUser.getAccountType()) && !UserAccountTypeEnum.MAMAGER.getKey().equals(sessionUser.getAccountType())) {
             throw new AuthorityException("无权访问！");
+        }
+        if (!UserSatusEnum.NORMAL.getKey().equals(sessionUser.getUserStatus())) {
+            throw new AuthorityException("账号异常：" + UserSatusEnum.getValue(sessionUser.getUserStatus()));
         }
         return true;
     }

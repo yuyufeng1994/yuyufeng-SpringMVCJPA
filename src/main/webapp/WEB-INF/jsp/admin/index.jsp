@@ -26,8 +26,11 @@
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-12">
-                <h1>Welcome!</h1>
+            <div class="col-lg-8">
+                <iframe src="${appServer}/blog/index" frameborder="1" width="100%" style="height: 600px;"></iframe>
+            </div>
+            <div class="col-lg-4">
+                <iframe src="${appServer}/blog/index" frameborder="1" width="100%" style="height: 600px;"></iframe>
             </div>
         </div>
     </div>

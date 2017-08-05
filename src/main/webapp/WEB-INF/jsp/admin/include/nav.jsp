@@ -76,7 +76,7 @@
 
 
                 <li>
-                    <a href="${appServer}/admin/catalog"><i class="fa fa-bar-chart-o fa-fw"></i> 目录管理 <span
+                    <a href="${appServer}/admin/catalog"><i class="fa fa-bar-chart-o fa-list-ul"></i> 目录管理 <span
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -87,7 +87,7 @@
                 </li>
 
                 <li>
-                    <a href="${appServer}/admin/user"><i class="fa fa-bar-chart-o fa-fw"></i> 用户管理 <span
+                    <a href="${appServer}/admin/user"><i class="fa fa-bar-chart-o fa-users"></i> 用户管理 <span
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>

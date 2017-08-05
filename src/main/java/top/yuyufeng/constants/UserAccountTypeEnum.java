@@ -6,7 +6,7 @@ import org.springframework.util.StringUtils;
  * Created by yuyufeng on 2017/8/1.
  */
 public enum UserAccountTypeEnum {
-    SUPER_MANAGER("1", "超级管理员"), COMMON_USER("2", "普通用户");
+    SUPER_MANAGER("1", "超级管理员"), MAMAGER("2", "管理员"), COMMON_USER("3", "普通用户");
     private String key;
     private String value;
 
@@ -15,7 +15,7 @@ public enum UserAccountTypeEnum {
         this.value = value;
     }
 
-    public String getValue(String key) {
+    public static String getValue(String key) {
         if (StringUtils.isEmpty(key)) {
             return "";
         }
@@ -24,7 +24,7 @@ public enum UserAccountTypeEnum {
                 return userAccountTypeEnum.value;
             }
         }
-        return "";
+        return "unknow";
     }
 
     public String getKey() {

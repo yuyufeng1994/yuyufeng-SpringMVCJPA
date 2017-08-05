@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fnc" uri="/WEB-INF/tlds/fnc.tld" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,9 +54,9 @@
                             <td>${u.userId}</td>
                             <td>${u.userName}</td>
                             <td>${u.userAccount}</td>
-                            <td>${u.userPassword}</td>
-                            <td>${u.userStatus}</td>
-                            <td>${u.accountType}</td>
+                            <td>******</td>
+                            <td>${fnc:getUserStatusValue(u.userStatus)}</td>
+                            <td>${fnc:getUserAccountTypeValue(u.accountType)}</td>
                             <td><fmt:formatDate value="${u.createTime}" type="both"
                                                 pattern="yyyy-MM-dd HH:mm:ss"/></td>
                             <td>
@@ -97,7 +98,6 @@
         </div>
     </div>
     <!-- /#page-wrapper -->
-
 </div>
 <!-- /#wrapper -->
 <%@ include file="/WEB-INF/jsp/admin/include/bodyfoot.jsp" %>
