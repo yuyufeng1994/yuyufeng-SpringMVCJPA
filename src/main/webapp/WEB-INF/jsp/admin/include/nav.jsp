@@ -14,7 +14,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="${appServer}/admin/index" >yuyufeng.top's Admin</a>
+        <a class="navbar-brand" href="${appServer}/admin/index">yuyufeng.top's Admin</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -57,10 +57,11 @@
                     <!-- /input-group -->
                 </li>--%>
                 <li>
-                    <a href="${appServer}/admin/index"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    <a href="${appServer}/admin/index"><i class="fa fa-dashboard fa-fw"></i> 后台首页</a>
                 </li>
                 <li>
-                    <a href="${appServer}/admin/blog"><i class="glyphicon glyphicon-text-background"></i> 博客管理 <span class="fa arrow"></span></a>
+                    <a href="${appServer}/admin/blog"><i class="glyphicon glyphicon-text-background"></i> 博客管理 <span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <%--<li>
                             <a href="${appServer}/admin/article/new?pageNo=1">发表文章</a>
@@ -72,18 +73,32 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-               <%-- <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+
+
+                <li>
+                    <a href="${appServer}/admin/catalog"><i class="fa fa-bar-chart-o fa-fw"></i> 目录管理 <span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="flot.html">Flot Charts</a>
-                        </li>
-                        <li>
-                            <a href="morris.html">Morris.js Charts</a>
+                            <a href="${appServer}/admin/develop">目录列表</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
-                </li>--%>
+                </li>
+
+                <li>
+                    <a href="${appServer}/admin/user"><i class="fa fa-bar-chart-o fa-fw"></i> 用户管理 <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="${appServer}/admin/user/list/1">用户列表</a>
+                        </li>
+                        <li>
+                            <a href="${appServer}/admin/develop">用户审核</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
 
             </ul>
         </div>

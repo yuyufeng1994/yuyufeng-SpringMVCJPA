@@ -5,8 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import top.yuyufeng.constants.UserAccountTypeEnum;
 import top.yuyufeng.dto.CataLogDto;
 import top.yuyufeng.entity.User;
+import top.yuyufeng.exception.AuthorityException;
 import top.yuyufeng.service.CatalogService;
 import top.yuyufeng.utils.SessionUtil;
 
@@ -18,7 +20,6 @@ import java.util.List;
  * 博客拦截器
  *
  * @author yyf
- *
  */
 public class AdminInterceptor implements HandlerInterceptor {
 
@@ -49,13 +50,16 @@ public class AdminInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
         String uri = request.getRequestURI();
-        if("/admin/login".equals(uri) || "/admin/doLogin".equals(uri) || "/admin/doQuit".equals(uri)){
+        if ("/admin/login".equals(uri) || "/admin/doLogin".equals(uri) || "/admin/doQuit".equals(uri)) {
             return true;
         }
         User sessionUser = SessionUtil.getSessionUser(request);
-        if(sessionUser == null){
-            request.getRequestDispatcher("/WEB-INF/jsp/admin/login.jsp").forward(request,response);
+        if (sessionUser == null) {
+            request.getRequestDispatcher("/WEB-INF/jsp/admin/login.jsp").forward(request, response);
             return false;
+        }
+        if (!UserAccountTypeEnum.SUPER_MANAGER.getKey().equals(sessionUser.getAccountType())) {
+            throw new AuthorityException("无权访问！");
         }
         return true;
     }

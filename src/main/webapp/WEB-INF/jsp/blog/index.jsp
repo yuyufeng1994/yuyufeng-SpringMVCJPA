@@ -36,7 +36,7 @@
                 </h3>
                 <p>${b.blogBrief}</p>
                 <c:if test="${!empty b.blogImage}">
-                    <img class="img-responsive" src="${b.blogImage}" alt="">
+                    <img class="img-responsive" src="${b.blogImage}" alt="图片无法加载">
                     <br/>
                 </c:if>
                 <p><span class="glyphicon glyphicon-time"></span> 发表于 <fmt:formatDate value="${b.updateTime}" type="both"   pattern="yyyy/MM/dd HH:mm:ss"/> | 作者：<a href="index.php">${b.blogUser.userName}</a> | 评论数：<span id = "sourceId::blog_${b.blogId}" class = "cy_cmt_count" ></span></p>

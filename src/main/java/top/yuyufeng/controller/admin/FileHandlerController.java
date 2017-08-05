@@ -21,7 +21,7 @@ import java.util.UUID;
  */
 @Controller
 @RequestMapping("/admin/file")
-public class FileController {
+public class FileHandlerController {
 
     @Resource(name = "propertiesMap")
     private Map<String, String> proMap;

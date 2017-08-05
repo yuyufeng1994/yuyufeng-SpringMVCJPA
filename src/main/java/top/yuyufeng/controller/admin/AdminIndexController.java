@@ -15,5 +15,9 @@ public class AdminIndexController {
     public String toIndex() {
         return "admin/index";
     }
+    @RequestMapping(value = "/develop", method = RequestMethod.GET)
+    public String toDevelop() {
+        return "admin/develop";
+    }
 
 }

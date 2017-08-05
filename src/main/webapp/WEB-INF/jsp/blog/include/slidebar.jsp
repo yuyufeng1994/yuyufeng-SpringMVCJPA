@@ -11,9 +11,9 @@
 <div class="well">
     <h4>博客搜索</h4>
     <div class="input-group">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" placeholder="开发中..." disabled>
         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
+                            <button class="btn btn-default" type="button" disabled>
                                 <span class="glyphicon glyphicon-search"></span>
                         </button>
                         </span>
