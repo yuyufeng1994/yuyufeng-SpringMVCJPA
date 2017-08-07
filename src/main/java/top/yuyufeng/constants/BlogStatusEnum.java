@@ -3,14 +3,14 @@ package top.yuyufeng.constants;
 import org.springframework.util.StringUtils;
 
 /**
- * Created by yuyufeng on 2017/8/1.
+ * Created by yuyufeng on 2017/8/7.
  */
-public enum UserAccountTypeEnum {
-    SUPER_MANAGER("0", "超级管理员"), MAMAGER("1", "管理员"), COMMON_USER("2", "普通用户");
+public enum BlogStatusEnum {
+    NORMAL("0", "正常"), PRIVATE("1", "私有"), LOCK("2", "冻结"), REVIEWING("3", "审核中"), DELETED("4", "已删除");
     private String key;
     private String value;
 
-    UserAccountTypeEnum(String key, String value) {
+    BlogStatusEnum(String key, String value) {
         this.key = key;
         this.value = value;
     }
@@ -19,9 +19,9 @@ public enum UserAccountTypeEnum {
         if (StringUtils.isEmpty(key)) {
             return "";
         }
-        for (UserAccountTypeEnum userAccountTypeEnum : UserAccountTypeEnum.values()) {
-            if (userAccountTypeEnum.getKey().equals(key)) {
-                return userAccountTypeEnum.value;
+        for (BlogStatusEnum blogStatusEnum : BlogStatusEnum.values()) {
+            if (blogStatusEnum.getKey().equals(key)) {
+                return blogStatusEnum.value;
             }
         }
         return "unknow";

@@ -45,6 +45,10 @@ public class Blog {
     @OrderBy("catalogId desc")
     private Set<Catalog> catalogs = new HashSet<>();
 
+
+    @Column(length = 2)
+    private String blogStatus;
+
     public Long getBlogId() {
         return blogId;
     }
@@ -117,4 +121,11 @@ public class Blog {
         this.catalogs = catalogs;
     }
 
+    public String getBlogStatus() {
+        return blogStatus;
+    }
+
+    public void setBlogStatus(String blogStatus) {
+        this.blogStatus = blogStatus;
+    }
 }
