@@ -20,4 +20,13 @@
         <function-class>top.yuyufeng.constants.BlogStatusEnum</function-class>
         <function-signature>java.lang.String getValue(java.lang.String)</function-signature>
     </function>
+
+    <function>
+        <name>getBlogStatusEnumValues</name>
+        <function-class>top.yuyufeng.constants.BlogStatusEnum</function-class>
+        <function-signature>top.yuyufeng.constants.BlogStatusEnum[] getBlogStatusEnumValues()</function-signature>
+    </function>
+
+
+
 </taglib>

@@ -36,8 +36,7 @@
     </div>
     <!-- /.row -->
 </footer>
-<!-- jQuery -->
-<script src="${staticServer}/static/vendor/jquery/jquery.min.js"></script>
+
 
 <!-- Bootstrap Core JavaScript -->
 <script src="${staticServer}/static/vendor/bootstrap/js/bootstrap.min.js"></script>

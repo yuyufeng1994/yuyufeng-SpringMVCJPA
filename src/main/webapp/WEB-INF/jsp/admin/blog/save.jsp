@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fnc" uri="/WEB-INF/tlds/fnc.tld" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,7 @@
         .toolbar {
             border: 1px solid #ccc;
         }
+
         .text {
             border: 1px solid #ccc;
             height: 600px;
@@ -48,7 +50,7 @@
                     <div class="form-group">
                         <label for="inputTitle">标题</label>
                         <input type="text" class="form-control" id="inputTitle" placeholder="标题" name="blogTitle"
-                               value="${blog.blogTitle}">
+                               value="${blog.blogTitle}" required>
                         <p class="help-block">请输入博客标题</p>
                     </div>
 
@@ -59,7 +61,7 @@
                         <%--<div style="padding: 5px 0; color: #ccc">中间隔离带</div>--%>
                         <div id="editor" class="text">${blog.blogContent}</div>
                         <p class="help-block">请输入博客正文</p>
-                        <input type="hidden" value="" name="blogContent" id="blogContent">
+                        <input type="hidden" value="" name="blogContent" id="blogContent" required>
                     </div>
 
 
@@ -87,6 +89,19 @@
                             |
                         </c:forEach>
                         <p class="help-block">请选择分类</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputStatus">状态</label>
+                        <select class="form-control" id="inputStatus" name="blogStatus" required>
+                            <c:forEach items="${fnc:getBlogStatusEnumValues()}" var="bse">
+                                <option value="${bse.key}">${bse.value}</option>
+                            </c:forEach>
+                        </select>
+                        <script>
+                            $("#inputStatus").val('${blog.blogStatus}')
+                        </script>
+                        <p class="help-block">博客内容中上传的第一张上传图片会修改此项(推荐使用900*300的图片)</p>
                     </div>
 
                     <button type="submit" class="btn btn-default" onclick="submitBlog()">提交</button>
@@ -124,8 +139,8 @@
 
     //富文本编辑器
     var E = window.wangEditor
-    var editor = new E('#toolbar','#editor')
-    editor.customConfig.menus=[
+    var editor = new E('#toolbar', '#editor')
+    editor.customConfig.menus = [
         'head',  // 标题
         'bold',  // 粗体
         'italic',  // 斜体
@@ -179,7 +194,12 @@
     //表单提交
     function submitBlog() {
         $("#blogContent").val(editor.txt.html())
+        if ($("#inputTitle").val().length == 0) {
+            return false;
+        }
+
         $("#form-blog").submit();
+
     }
 
 </script>

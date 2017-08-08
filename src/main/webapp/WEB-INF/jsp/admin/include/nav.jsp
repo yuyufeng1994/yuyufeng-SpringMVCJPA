@@ -22,15 +22,15 @@
         <!-- /.dropdown -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i> ${SESSION_USER.userName}  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li>
+               <%-- <li>
                     <a href="${appServer}/admin/index"><i class="glyphicon glyphicon-home"></i> 主页</a>
                 </li>
                 <li>
                     <a href="${appServer}/admin/blog/list/0"><i class="glyphicon glyphicon-text-background"></i> 文章</a>
-                </li>
+                </li>--%>
                 <li class="divider"></li>
                 <li>
                     <a href="${appServer}/admin/quit"><i class="fa fa-sign-out fa-fw"></i> 退出</a>

@@ -26,7 +26,7 @@
 
             <h1 class="page-header">
                 博客
-                <small>yuyufeng's blog</small>
+                <small>用心写博客</small>
             </h1>
 
             <c:forEach items="${page.content}" var="b">

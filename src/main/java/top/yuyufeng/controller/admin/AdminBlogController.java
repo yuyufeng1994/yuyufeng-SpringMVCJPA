@@ -39,7 +39,7 @@ public class AdminBlogController {
 
     @RequestMapping(value = "/list/{pageNo}", method = RequestMethod.GET)
     public String toList(Model model, @PathVariable("pageNo") Integer pageNo) {
-        pageNo = pageNo < 1 ? 0 : pageNo;
+        pageNo = pageNo < 1 ? 1 : pageNo;
         Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
         Pageable pageable = new PageRequest(--pageNo, 10, sort);
         Page<Blog> page = blogService.findPage(pageable);

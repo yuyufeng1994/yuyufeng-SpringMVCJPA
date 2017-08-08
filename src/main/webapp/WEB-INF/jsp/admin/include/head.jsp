@@ -31,3 +31,6 @@
 <link rel="stylesheet" href="${staticServer}/static/vendor/font-awesome/css/font-awesome.min.css" />
 <link href="${staticServer}/static/css/admin.css" rel="stylesheet">
 <title>yuyufeng的后台管理</title>
+
+<!-- jQuery -->
+<script src="${staticServer}/static/vendor/jquery/jquery.min.js"></script>

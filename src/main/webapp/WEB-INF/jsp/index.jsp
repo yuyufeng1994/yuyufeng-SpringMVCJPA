@@ -1,17 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: yuyufeng
-  Date: 2017/8/1
-  Time: 9:10
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <title>Title</title>
-</head>
-<body>
-<h1>这是首页</h1>
-</body>
-</html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="yuyufeng">
+<p>跳转到博客主页...</p>
+<script>
+    window.location.href="/blog/index"
+</script>

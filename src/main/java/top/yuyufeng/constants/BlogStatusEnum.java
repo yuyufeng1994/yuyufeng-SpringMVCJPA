@@ -28,6 +28,9 @@ public enum BlogStatusEnum {
         return "unknow";
     }
 
+    public static BlogStatusEnum[] getBlogStatusEnumValues(){
+        return BlogStatusEnum.values();
+    }
     public String getKey() {
         return key;
     }

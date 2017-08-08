@@ -47,7 +47,7 @@ public class BlogController {
 
     @RequestMapping(value = "/list/{pageNo}", method = RequestMethod.GET)
     public String toList(Model model, @PathVariable("pageNo") Integer pageNo) {
-        pageNo = pageNo < 1 ? 0 : pageNo;
+        pageNo = pageNo < 1 ? 1 : pageNo;
         Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
         Pageable pageable = new PageRequest(--pageNo, 10, sort);
         Page<Blog> page = blogService.findPageByBlogStatus(StatusesCommonUse.blogStatusesNormal, pageable);
@@ -67,7 +67,7 @@ public class BlogController {
 
     @RequestMapping(value = "/list-catalog/{catalogId}/{pageNo}", method = RequestMethod.GET)
     public String toListByCatalog(Model model, @PathVariable("catalogId") Long catalogId, @PathVariable("pageNo") Integer pageNo) {
-        pageNo = pageNo < 1 ? 0 : pageNo;
+        pageNo = pageNo < 1 ? 1 : pageNo;
         Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
         Pageable pageable = new PageRequest(--pageNo, 10, sort);
         Page<Blog> page = blogService.findBlogPageByCatalogId(StatusesCommonUse.blogStatusesNormal, catalogId, pageable);
