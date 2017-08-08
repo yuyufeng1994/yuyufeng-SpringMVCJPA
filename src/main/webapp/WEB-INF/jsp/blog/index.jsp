@@ -39,7 +39,7 @@
                     <img class="img-responsive" src="${b.blogImage}" alt="图片无法加载">
                     <br/>
                 </c:if>
-                <p><span class="glyphicon glyphicon-time"></span> 发表于 <fmt:formatDate value="${b.updateTime}" type="both"   pattern="yyyy/MM/dd HH:mm:ss"/> | 作者：<a href="index.php">${b.blogUser.userName}</a> | 评论数：<span id = "sourceId::blog_${b.blogId}" class = "cy_cmt_count" ></span></p>
+                <p><span class="glyphicon glyphicon-time"></span> 更新于 <fmt:formatDate value="${b.updateTime}" type="both"   pattern="yyyy/MM/dd HH:mm:ss"/> | 作者：<a href="index.php">${b.blogUser.userName}</a> | 评论数：<span id = "sourceId::blog_${b.blogId}" class = "cy_cmt_count" ></span></p>
                 <c:forEach items="${b.catalogs}" var="c">
                     <a class="label label-primary" href="${appServer}/blog/list-catalog/${c.catalogId}/1">${c.catalogName}</a>
                 </c:forEach>

@@ -29,7 +29,7 @@
             <h1>${blog.blogTitle}</h1>
             <hr>
             <!-- Date/Time -->
-            <p><span class="glyphicon glyphicon-time"></span> Posted on  <fmt:formatDate value="${blog.updateTime}" type="both"   pattern="yyyy/MM/dd HH:mm:ss"/>  作者:<a href="index.php">${blog.blogUser.userName}</a></p>
+            <p><span class="glyphicon glyphicon-time"></span>  更新于  <fmt:formatDate value="${blog.updateTime}" type="both"   pattern="yyyy/MM/dd HH:mm:ss"/>  作者:<a href="index.php">${blog.blogUser.userName}</a></p>
             <p><c:forEach items="${blog.catalogs}" var="c">
                 <a class="label label-primary" href="${appServer}/blog/list-catalog/${c.catalogId}/1">${c.catalogName}</a>
             </c:forEach></p>
