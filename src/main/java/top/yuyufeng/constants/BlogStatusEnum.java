@@ -3,10 +3,11 @@ package top.yuyufeng.constants;
 import org.springframework.util.StringUtils;
 
 /**
+ * 博客状态
  * Created by yuyufeng on 2017/8/7.
  */
 public enum BlogStatusEnum {
-    NORMAL("0", "正常"), PRIVATE("1", "私有"), LOCK("2", "冻结"), REVIEWING("3", "审核中"), DELETED("4", "已删除");
+    NORMAL("0", "正常"), PRIVATE("1", "私有"), LOCK("2", "冻结"), REVIEWING("3", "审核中"), DELETED("4", "已删除"),MODIFYING("5", "修改中");
     private String key;
     private String value;
 
