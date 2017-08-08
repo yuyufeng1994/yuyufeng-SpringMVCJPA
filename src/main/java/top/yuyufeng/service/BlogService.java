@@ -43,9 +43,17 @@ public class BlogService extends BaseServiceAbstract<Blog> {
         return blogDao.findAll(pageable);
     }
 
+    public Page<Blog> findPageByBlogStatus(List<String> blogStatuses,Pageable pageable) {
+        if (pageable == null) {
+            List<Blog> list = IteratorUtils.toList(blogDao.findByBlogStatusIn(blogStatuses,pageable).iterator());
+            Page<Blog> page = new PageImpl<Blog>(list);
+            return page;
+        }
+        return blogDao.findByBlogStatusIn(blogStatuses,pageable);
+    }
 
-    public Page<Blog> findBlogPageByCatalogId(Long catalogId, Pageable pageable) {
-        Page<Blog> page = blogDao.findBlogPageByCatalogId(catalogId, pageable);
+    public Page<Blog> findBlogPageByCatalogId(List<String> blogStatuses,Long catalogId, Pageable pageable) {
+        Page<Blog> page = blogDao.findBlogPageByCatalogId(blogStatuses,catalogId, pageable);
         return page;
     }
 }

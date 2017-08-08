@@ -46,8 +46,8 @@ public class CatalogService extends BaseServiceAbstract<Catalog> {
         return catalogDao.findAll(pageable);
     }
 
-    public List<CataLogDto> findAllCatalogs() {
-        List<CataLogDto> list = nativeDao.findAllCataLogs();
+    public List<CataLogDto> findAllCatalogs(List<String> blogStatusesNormal) {
+        List<CataLogDto> list = nativeDao.findAllCataLogs(blogStatusesNormal);
         return list;
     }
 }

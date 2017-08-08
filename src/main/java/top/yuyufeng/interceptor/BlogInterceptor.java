@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import top.yuyufeng.constants.BlogStatusesCommonUse;
 import top.yuyufeng.dto.CataLogDto;
 import top.yuyufeng.entity.Catalog;
 import top.yuyufeng.entity.User;
@@ -43,7 +44,7 @@ public class BlogInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object object,
                            ModelAndView modelAndView) throws Exception {
         //装载分类
-        List<CataLogDto> catalogs = catalogService.findAllCatalogs();
+        List<CataLogDto> catalogs = catalogService.findAllCatalogs(BlogStatusesCommonUse.blogStatusesNormal);
         modelAndView.addObject("catalogs",catalogs);
     }
 

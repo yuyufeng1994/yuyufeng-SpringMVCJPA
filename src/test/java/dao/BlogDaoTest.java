@@ -7,21 +7,26 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
+import top.yuyufeng.constants.BlogStatusEnum;
 import top.yuyufeng.dao.BlogDao;
 import top.yuyufeng.dao.CatalogDao;
 import top.yuyufeng.entity.Blog;
 import top.yuyufeng.entity.Catalog;
 import top.yuyufeng.entity.User;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by yuyufeng on 2017/8/1.
  */
 //@Transactional//junit懒加载
 public class BlogDaoTest extends BaseDaoTest {
+
+    private static List<String> blogStatuses = new ArrayList<>();
+    static {
+        blogStatuses.add(BlogStatusEnum.NORMAL.getKey());
+    }
+
     @Autowired
     private BlogDao blogDao;
 
@@ -68,6 +73,6 @@ public class BlogDaoTest extends BaseDaoTest {
     public void testFindBlogPageByCatalogId(){
         Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
         Pageable pageable = new PageRequest(2, 3,sort);
-        Page<Blog> page = blogDao.findBlogPageByCatalogId(2l,pageable);
+        Page<Blog> page = blogDao.findBlogPageByCatalogId(blogStatuses,2l,pageable);
     }
 }

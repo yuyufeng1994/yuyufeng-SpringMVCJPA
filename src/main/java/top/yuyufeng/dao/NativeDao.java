@@ -17,9 +17,11 @@ import java.util.List;
 public class NativeDao {
     @PersistenceContext//(unitName="")
     private EntityManager em;
-    public List<CataLogDto> findAllCataLogs(){
-        Query query = em.createNativeQuery("SELECT catalogId,catalogName,catalogBrief,(SELECT count(blogId) FROM blog_catalog_info WHERE catalogId = catalog_info.catalogId) as blogsSize FROM catalog_info");
-        List<Object[]> list= query.getResultList();
+
+    public List<CataLogDto> findAllCataLogs(List<String> statuses) {
+        String sql = "SELECT catalogId,catalogName,catalogBrief,(SELECT count(bci.blogId) FROM blog_catalog_info bci LEFT JOIN blog_info bi ON bci.blogId = bi.blogId WHERE bi.blogStatus in(?1) AND bci.catalogId = ci.catalogId) AS blogsSize FROM catalog_info ci";
+        Query query = em.createNativeQuery(sql).setParameter(1,statuses);
+        List<Object[]> list = query.getResultList();
         List<CataLogDto> cataLogDtos = new ArrayList<>();
         for (Object[] objects : list) {
             CataLogDto cataLogDto = new CataLogDto();

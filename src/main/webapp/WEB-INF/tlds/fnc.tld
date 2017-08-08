@@ -15,4 +15,9 @@
         <function-class>top.yuyufeng.constants.UserSatusEnum</function-class>
         <function-signature>java.lang.String getValue(java.lang.String)</function-signature>
     </function>
+    <function>
+        <name>getBlogStatusValue</name>
+        <function-class>top.yuyufeng.constants.BlogStatusEnum</function-class>
+        <function-signature>java.lang.String getValue(java.lang.String)</function-signature>
+    </function>
 </taglib>
