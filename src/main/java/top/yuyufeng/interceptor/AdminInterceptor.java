@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import top.yuyufeng.constants.StatusesCommonUse;
 import top.yuyufeng.constants.UserAccountTypeEnum;
 import top.yuyufeng.constants.UserSatusEnum;
 import top.yuyufeng.dto.CataLogDto;
@@ -59,7 +60,16 @@ public class AdminInterceptor implements HandlerInterceptor {
             request.getRequestDispatcher("/WEB-INF/jsp/admin/login.jsp").forward(request, response);
             return false;
         }
-        if (!UserAccountTypeEnum.SUPER_MANAGER.getKey().equals(sessionUser.getAccountType()) && !UserAccountTypeEnum.MAMAGER.getKey().equals(sessionUser.getAccountType())) {
+
+        boolean isManagerEnter = false;
+        for (String accountType : StatusesCommonUse.accountTypesManager) {
+            if(accountType.equals(sessionUser.getAccountType())){
+                isManagerEnter = true;
+                break;
+            }
+        }
+
+        if (!isManagerEnter) {
             throw new AuthorityException("无权访问！");
         }
         if (!UserSatusEnum.NORMAL.getKey().equals(sessionUser.getUserStatus())) {

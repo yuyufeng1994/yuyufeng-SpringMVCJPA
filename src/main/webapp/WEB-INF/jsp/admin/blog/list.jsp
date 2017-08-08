@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fnc" uri="/WEB-INF/tlds/fnc.tld" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +40,7 @@
                     <tr role="row">
                         <th>ID</th>
                         <th>标题</th>
+                        <th>状态</th>
                         <th>更新时间</th>
                         <th>操作</th>
                     </tr>
@@ -48,6 +50,7 @@
                         <tr>
                             <td>${b.blogId}</td>
                             <td><a href="${appServer}/blog/content/${b.blogId}" target="_blank">${b.blogTitle}</a></td>
+                            <td>${fnc:getBlogStatusValue(b.blogStatus)}</td>
                             <td><fmt:formatDate value="${b.updateTime}" type="both"
                                                 pattern="yyyy-MM-dd HH:mm:ss"/></td>
                             <td>

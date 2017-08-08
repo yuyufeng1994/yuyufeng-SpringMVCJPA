@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import top.yuyufeng.constants.BlogStatusEnum;
-import top.yuyufeng.constants.BlogStatusesCommonUse;
+import top.yuyufeng.constants.StatusesCommonUse;
 import top.yuyufeng.entity.Blog;
 import top.yuyufeng.entity.Catalog;
 import top.yuyufeng.exception.BlogException;
@@ -40,7 +40,7 @@ public class BlogController {
     public String toIndex(Model model) {
         Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
         Pageable pageable = new PageRequest(0, 10, sort);
-        Page<Blog> page = blogService.findPageByBlogStatus(BlogStatusesCommonUse.blogStatusesNormal, pageable);
+        Page<Blog> page = blogService.findPageByBlogStatus(StatusesCommonUse.blogStatusesNormal, pageable);
         model.addAttribute("page", page);
         return "blog/index";
     }
@@ -50,7 +50,7 @@ public class BlogController {
         pageNo = pageNo < 1 ? 0 : pageNo;
         Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
         Pageable pageable = new PageRequest(--pageNo, 10, sort);
-        Page<Blog> page = blogService.findPageByBlogStatus(BlogStatusesCommonUse.blogStatusesNormal, pageable);
+        Page<Blog> page = blogService.findPageByBlogStatus(StatusesCommonUse.blogStatusesNormal, pageable);
         model.addAttribute("page", page);
         return "blog/index";
     }
@@ -70,7 +70,7 @@ public class BlogController {
         pageNo = pageNo < 1 ? 0 : pageNo;
         Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
         Pageable pageable = new PageRequest(--pageNo, 10, sort);
-        Page<Blog> page = blogService.findBlogPageByCatalogId(BlogStatusesCommonUse.blogStatusesNormal, catalogId, pageable);
+        Page<Blog> page = blogService.findBlogPageByCatalogId(StatusesCommonUse.blogStatusesNormal, catalogId, pageable);
         Catalog catalog = catalogService.findOneById(catalogId);
         model.addAttribute("page", page);
         model.addAttribute("catalog", catalog);
