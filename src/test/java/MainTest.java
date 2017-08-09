@@ -7,45 +7,27 @@ import java.util.List;
  * Created by yuyufeng on 2017/8/2.
  */
 public class MainTest {
-    @Test
-    public void test(){
-        calcNavigatepageNums(1,16);
-        calcNavigatepageNums(2,16);
-        calcNavigatepageNums(3,16);
-        calcNavigatepageNums(10,16);
-    }
-    private void calcNavigatepageNums(int pageNum,int pages) {
-        int navigatePages = 10;
-        int[] navigatepageNums;
-        int startNum;
-        if(pages <= navigatePages) {
-            navigatepageNums = new int[pages];
 
-            for(startNum = 0; startNum < pages; ++startNum) {
-                navigatepageNums[startNum] = startNum + 1;
-            }
-        } else {
-            navigatepageNums = new int[navigatePages];
-            startNum = pageNum - navigatePages / 2;
-            int endNum = pageNum + navigatePages / 2;
-            int i;
-            if(startNum < 1) {
-                startNum = 1;
+    /*private static HttpSolrClient server = null;
+    private static String url = "http://127.0.0.1:8983/solr/yuyufeng_blog";
 
-                for(i = 0; i < navigatePages; ++i) {
-                    navigatepageNums[i] = startNum++;
-                }
-            } else if(endNum > pages) {
-                endNum = pages;
-                for(i = navigatePages - 1; i >= 0; --i) {
-                    navigatepageNums[i] = endNum--;
-                }
-            } else {
-                for(i = 0; i < navigatePages; ++i) {
-                    navigatepageNums[i] = startNum++;
-                }
-            }
+    public static HttpSolrClient getServer() {
+        if (server == null) {
+            server = new HttpSolrClient(url);
+            server.setDefaultMaxConnectionsPerHost(1000);
+            server.setMaxTotalConnections(10000);//最大连接数
+            server.setConnectionTimeout(60000);//设置连接超时时间（单位毫秒） 1000
+            server.setSoTimeout(60000);//// 设置读数据超时时间(单位毫秒) 1000
+            server.setFollowRedirects(false);//遵循从定向
+            server.setAllowCompression(true);//允许压缩
+
         }
-        System.out.println(Arrays.toString(navigatepageNums));
+        return server;
     }
+
+    public static void main(String[] args) {
+        System.out.println(getServer());
+
+    }*/
+
 }
