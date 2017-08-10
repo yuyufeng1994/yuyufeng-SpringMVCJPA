@@ -15,7 +15,7 @@
 	<!-- 对于注解的handler -->
 	<context:component-scan base-package="top.yuyufeng.controller"></context:component-scan>
 	<!--<mvc:default-servlet-handler/> -->
-	<mvc:annotation-driven conversion-service="conversionService"
+	<mvc:annotation-driven conversion-service="myConversionService"
 		validator="validator"></mvc:annotation-driven>
 	<!-- 视图解析器 -->
 	<bean
@@ -40,7 +40,7 @@
 		<property name="maxInMemorySize" value="40960"></property>
 	</bean>
 	<!-- 自定义参数绑定 -->
-	<bean id="conversionService"
+	<bean id="myConversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
 			<set>
