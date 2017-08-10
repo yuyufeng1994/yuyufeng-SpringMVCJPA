@@ -2,20 +2,14 @@ package solr;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import top.yuyufeng.dao.BlogDao;
-import top.yuyufeng.entity.Blog;
-import top.yuyufeng.solr.dao.BlogCoreDao;
 
 /**
  * Created by yuyufeng on 2017/8/9.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring/applicationSolr.xml"})
+@ContextConfiguration({"classpath:spring/appSolr.xml"})
 public class BlogCoreDaoTest2 {
 
 

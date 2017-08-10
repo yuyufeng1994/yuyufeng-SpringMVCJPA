@@ -10,13 +10,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import top.yuyufeng.dao.BlogDao;
 import top.yuyufeng.entity.Blog;
 import top.yuyufeng.solr.dao.BlogCoreDao;
-import top.yuyufeng.solr.entity.BlogCore;
 
 /**
  * Created by yuyufeng on 2017/8/9.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring/applicationContext.xml","classpath:spring/applicationSolr.xml"})
+@ContextConfiguration({"classpath:spring/applicationContext.xml", "classpath:spring/appSolr.xml"})
 public class BlogCoreDaoTest {
     @Autowired
    private BlogCoreDao blogCoreDao;
