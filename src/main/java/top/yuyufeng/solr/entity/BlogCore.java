@@ -30,6 +30,10 @@ public class BlogCore {
     @Indexed
     public String blogUserName;
     @Indexed
+    public String blogUserId;
+    @Indexed
+    public String blogCatalogs;
+    @Indexed
     public String keywords;
 
 
@@ -97,17 +101,19 @@ public class BlogCore {
         this.keywords = keywords;
     }
 
-    @Override
-    public String toString() {
-        return "BlogCore{" +
-                "blogId='" + blogId + '\'' +
-                ", blogTitle='" + blogTitle + '\'' +
-                ", blogBrief='" + blogBrief + '\'' +
-                ", blogContent='" + blogContent + '\'' +
-                ", blogImage='" + blogImage + '\'' +
-                ", updateTime=" + updateTime +
-                ", blogUserName='" + blogUserName + '\'' +
-                ", keywords='" + keywords + '\'' +
-                '}';
+    public String getBlogUserId() {
+        return blogUserId;
+    }
+
+    public void setBlogUserId(String blogUserId) {
+        this.blogUserId = blogUserId;
+    }
+
+    public String getBlogCatalogs() {
+        return blogCatalogs;
+    }
+
+    public void setBlogCatalogs(String blogCatalogs) {
+        this.blogCatalogs = blogCatalogs;
     }
 }

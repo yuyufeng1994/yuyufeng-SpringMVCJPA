@@ -10,12 +10,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import top.yuyufeng.dao.BlogDao;
 import top.yuyufeng.entity.Blog;
 import top.yuyufeng.solr.dao.BlogCoreDao;
+import top.yuyufeng.solr.entity.BlogCore;
+
+import java.util.Date;
 
 /**
  * Created by yuyufeng on 2017/8/9.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring/applicationContext.xml", "classpath:spring/appSolr.xml"})
+@ContextConfiguration({"classpath:spring/applicationContext.xml", "classpath:spring/applicationSolr.xml"})
 public class BlogCoreDaoTest {
     @Autowired
    private BlogCoreDao blogCoreDao;
@@ -31,14 +34,17 @@ public class BlogCoreDaoTest {
     public void testInsert() {
         Blog blog = blogDao.findOne(114l);
         System.out.println(blog);
-       /* BlogCore blogCore = new BlogCore();
-        blogCore.setBlogId(blog.getBlogId());
-        blogCore.setBlogBrief(blog.getBlogBrief());
-        blogCore.setBlogContent(blog.getBlogContent());
-        blogCore.setBlogImage(blog.getBlogImage());
-        blogCore.setBlogUserName(blog.getBlogUser().getUserName());
-        blogCore.setUpdateTime(blog.getUpdateTime());
-        blogCoreDao.save(blogCore);*/
+        BlogCore blogCore = new BlogCore();
+        blogCore.setBlogId("1");
+        blogCore.setBlogTitle("这是标题");
+        blogCore.setBlogBrief("简介");
+        blogCore.setBlogContent("主题blog.getBlogContent()");
+        blogCore.setBlogImage("d://das");
+        blogCore.setBlogUserName("yyf");
+        blogCore.setUpdateTime(new Date());
+        blogCore.setBlogCatalogs("aa,bvb,cc");
+        blogCore.setBlogUserId("2013");
+        blogCoreDao.save(blogCore);
     }
 
 }
