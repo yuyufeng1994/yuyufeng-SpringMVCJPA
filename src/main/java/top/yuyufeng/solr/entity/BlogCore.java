@@ -16,10 +16,7 @@ import java.util.Date;
 public class BlogCore {
     @Id
     @Indexed
-    public String  id;
-
-    @Indexed
-    public Long blogId;
+    public String blogId;
     @Indexed
     public String blogTitle;
     @Indexed
@@ -36,11 +33,11 @@ public class BlogCore {
     public String keywords;
 
 
-    public Long getBlogId() {
+    public String getBlogId() {
         return blogId;
     }
 
-    public void setBlogId(Long blogId) {
+    public void setBlogId(String blogId) {
         this.blogId = blogId;
     }
 
