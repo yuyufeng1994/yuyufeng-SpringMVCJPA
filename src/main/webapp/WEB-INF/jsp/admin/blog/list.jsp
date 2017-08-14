@@ -30,6 +30,8 @@
             <div class="col-lg-12">
                 <div class="btn-group" role="group" aria-label="...">
                     <a type="button" class="btn btn-default" href="${appServer}/admin/blog/save?returnUrl=${appServer}/admin/blog/list/${page.number+1}"><i class="glyphicon glyphicon-plus-sign"></i> 增加博客</a>
+                    <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i>更新索引(All)</button>
+                    <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-plus-sign"></i>删除索引(All)</button>
                 </div>
 
                 <table width="100%"

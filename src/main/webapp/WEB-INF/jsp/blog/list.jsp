@@ -28,7 +28,7 @@
             <c:if test="${empty catalog}">
                 <h1 class="page-header">
                     博客
-                    <small>用心写博客</small>
+                    <small>Blog</small>
                 </h1>
             </c:if>
 
@@ -40,6 +40,11 @@
             </c:if>
 
 
+            <c:if test="${page.content.size() == 0}">
+                <div class="alert alert-warning">
+                   <i class="glyphicon glyphicon-info-sign"></i> 没有找到相关博客
+                </div>
+            </c:if>
             <c:forEach items="${page.content}" var="b">
                 <!-- First Blog Post -->
                 <h3>
@@ -65,12 +70,12 @@
             <ul class="pager">
                 <c:if test="${!page.first}">
                     <li class="previous">
-                        <a href="${pagerUrl}/${catalog.catalogId}/${page.number}${extraParam}">&larr; 上一页</a>
+                        <a href="${pagerUrl}/${page.number}${extraParam}">&larr; 上一页</a>
                     </li>
                 </c:if>
                 <c:if test="${!page.last}">
                     <li class="next">
-                        <a href="${pagerUrl}/${catalog.catalogId}/${page.number+2}${extraParam}">下一页 &rarr;</a>
+                        <a href="${pagerUrl}/${page.number+2}${extraParam}">下一页 &rarr;</a>
                     </li>
                 </c:if>
             </ul>

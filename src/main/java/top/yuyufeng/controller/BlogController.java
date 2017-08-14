@@ -87,7 +87,8 @@ public class BlogController {
     public String toSearch(Model model, @PathVariable("pageNo") Integer pageNo, String keywords) throws Exception {
         pageNo = pageNo < 1 ? 1 : pageNo;
         Pageable pageable = new PageRequest(--pageNo, 10);
-        Page<Blog> page = solrBlogQuery.queryByKeyWords(keywords, pageable);
+        Page<Blog> page = blogService.queryBlogByKeyWords(keywords,pageable);
+
         model.addAttribute("page", page);
         model.addAttribute("pagerUrl", urlMap.get("appServer") + "/blog/search");
         model.addAttribute("extraParam", "?keywords=" + keywords);
@@ -131,7 +132,7 @@ public class BlogController {
         Catalog catalog = catalogService.findOneById(catalogId);
         model.addAttribute("page", page);
         model.addAttribute("catalog", catalog);
-        model.addAttribute("pagerUrl", urlMap.get("appServer") + "/blog/list-catalog");
+        model.addAttribute("pagerUrl", urlMap.get("appServer") + "/blog/list-catalog/"+catalogId);
         return "blog/list";
     }
 }

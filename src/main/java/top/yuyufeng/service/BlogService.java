@@ -1,18 +1,26 @@
 package top.yuyufeng.service;
 
 import org.apache.commons.collections.IteratorUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import sun.rmi.runtime.Log;
+import top.yuyufeng.constants.BlogStatusEnum;
 import top.yuyufeng.dao.BlogDao;
 import top.yuyufeng.entity.Blog;
 import top.yuyufeng.entity.Catalog;
 import top.yuyufeng.entity.User;
 import top.yuyufeng.solr.blog.BlogCore;
 import top.yuyufeng.solr.blog.SolrBlogBean;
+import top.yuyufeng.solr.blog.SolrBlogQuery;
+import top.yuyufeng.utils.SessionUtil;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,9 +28,12 @@ import java.util.List;
  */
 @Service
 public class BlogService extends BaseServiceAbstract<Blog> {
-
+    private final Logger LOG = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private SolrBlogBean solrBlogBean;
+
+    @Autowired
+    private SolrBlogQuery solrBlogQuery;
 
     @Override
     public Blog findOneById(Long id) {
@@ -31,6 +42,12 @@ public class BlogService extends BaseServiceAbstract<Blog> {
 
     @Override
     public Blog save(Blog entity) {
+        entity.setUpdateTime(new Date());
+
+
+        if (StringUtils.isEmpty(entity.getBlogStatus())) {
+            entity.setBlogStatus(BlogStatusEnum.MODIFYING.getKey());
+        }
         return blogDao.save(entity);
     }
 
@@ -72,6 +89,10 @@ public class BlogService extends BaseServiceAbstract<Blog> {
      */
     public int indexCreate(Long blogId) throws Exception {
         Blog blog = findOneById(blogId);
+        if (!BlogStatusEnum.NORMAL.getKey().equals(blog.getBlogStatus())) {
+            LOG.error(blog.getBlogId() + " " + blog.getBlogTitle() + " " + "博客状态是" + BlogStatusEnum.getValue(blog.getBlogStatus()) + " 无法建立索引！");
+            return -1;
+        }
         BlogCore blogCore = new BlogCore();
         blogCore.setBlogId(blog.getBlogId());
         blogCore.setBlogTitle(blog.getBlogTitle());
@@ -97,5 +118,10 @@ public class BlogService extends BaseServiceAbstract<Blog> {
 
     public int indexDelete(Long blogId) throws Exception {
         return solrBlogBean.deleteByQuery(blogId);
+    }
+
+    public Page<Blog> queryBlogByKeyWords(String keywords, Pageable pageable) throws Exception {
+        Page<Blog> page = solrBlogQuery.queryByKeyWords(keywords, pageable);
+        return page;
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import top.yuyufeng.constants.BlogStatusEnum;
 import top.yuyufeng.entity.Blog;
 import top.yuyufeng.entity.Catalog;
 import top.yuyufeng.service.BlogService;
@@ -84,7 +85,6 @@ public class AdminBlogController {
             }
         }
         blog.setCatalogs(catalogs);
-        blog.setUpdateTime(new Date());
         if (StringUtils.isEmpty(blog.getBlogId())) {
             blog.setCreateTime(new Date());
             blog.setBlogUser(SessionUtil.getSessionUser(request));
@@ -108,8 +108,8 @@ public class AdminBlogController {
     @ResponseBody
     JsonResult doIndexCreate(@PathVariable("blogId") Long blogId) throws Exception {
         int res = blogService.indexCreate(blogId);
-        boolean success = "0".equals(res) ? true : false;
-        return new JsonResult(success, "增加索引成功");
+        boolean success = 0 == res ? true : false;
+        return new JsonResult(success);
     }
 
     @RequestMapping(value = "/doIndexDelete/{blogId}", method = RequestMethod.GET)
@@ -117,8 +117,8 @@ public class AdminBlogController {
     @ResponseBody
     JsonResult doIndexDelete(@PathVariable("blogId") Long blogId) throws Exception {
         int res = blogService.indexDelete(blogId);
-        boolean success = "0".equals(res) ? true : false;
-        return new JsonResult(success, "删除索引成功");
+        boolean success = 0 == res ? true : false;
+        return new JsonResult(success);
     }
 
 

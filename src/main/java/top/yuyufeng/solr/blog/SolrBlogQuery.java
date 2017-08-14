@@ -29,6 +29,7 @@ public class SolrBlogQuery {
 
     //查询索引
     public  Page<Blog> queryByKeyWords(String keywords, Pageable pageable) throws Exception {
+        keywords=keywords.replaceAll(" ","");
         SolrQuery query = new SolrQuery();
         query.set("q", "keywords:" + keywords);//*通配多个字符
 //        query.set("sort", "product_price desc");
