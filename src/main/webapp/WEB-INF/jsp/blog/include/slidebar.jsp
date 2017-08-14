@@ -11,13 +11,24 @@
 <div class="well">
     <h4>博客搜索</h4>
     <div class="input-group">
-        <input type="text" class="form-control" placeholder="开发中..." disabled>
+        <input type="text" id="input-keywords"  class="form-control" placeholder="输入搜索内容.." value="${keywords}">
         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" disabled>
+                            <button class="btn btn-default" type="button" onclick="searchFormSubmit()">
                                 <span class="glyphicon glyphicon-search"></span>
                         </button>
                         </span>
     </div>
+    <form class="hidden" id="search-form" action="${appServer}/blog/search/1" method="get">
+            <input name="keywords" id="search-form-keywords">
+    </form>
+    <script>
+        function searchFormSubmit() {
+            $("#search-form-keywords").val($("#input-keywords").val().trim());
+            $("#search-form").serialize();
+            $("#search-form").submit();
+        }
+
+    </script>
     <!-- /.input-group -->
 </div>
 <!-- Blog Categories Well -->

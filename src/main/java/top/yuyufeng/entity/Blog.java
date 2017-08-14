@@ -128,4 +128,20 @@ public class Blog {
     public void setBlogStatus(String blogStatus) {
         this.blogStatus = blogStatus;
     }
+
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "blogId=" + blogId +
+                ", blogTitle='" + blogTitle + '\'' +
+                ", blogBrief='" + blogBrief + '\'' +
+                ", blogContent='" + blogContent + '\'' +
+                ", blogImage='" + blogImage + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", blogUser=" + blogUser +
+                ", catalogs=" + catalogs +
+                ", blogStatus='" + blogStatus + '\'' +
+                '}';
+    }
 }

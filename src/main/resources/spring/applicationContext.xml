@@ -18,58 +18,10 @@
 			<list>
 				<!-- dataSourse连接池相关属性，代码不在此贴出，会放在打包好的项目里面 -->
 				<value>classpath:db.properties</value>
-
 				<value>classpath:config/config.properties</value>
 			</list>
 		</property>
 	</bean>
 
-	<!--第一步 -->
-	<!--定义服务层代码存放的包扫描路径 -->
-	<context:component-scan base-package="top.yuyufeng.service" />
-	<!--第二步 -->
-	<!--定义实体的工厂bean -->
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="userPU" />
-		<property name="persistenceXmlLocation" value="classpath:/META-INF/persistence.xml"></property>
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
 
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="${db.driverClassName}" />
-		<property name="url" value="${db.url}" />
-		<property name="username" value="${db.user}" />
-		<property name="password" value="${db.pwd}" />
-		<property name="maxIdle" value="5" />
-		<property name="maxActive" value="5" />
-		<property name="maxWait" value="10" />
-		<property name="validationQuery" value="select 1" />
-		<property name="testOnBorrow" value="false" />
-		<property name="testWhileIdle" value="true" />
-		<property name="timeBetweenEvictionRunsMillis" value="1200000" />
-		<property name="minEvictableIdleTimeMillis" value="1800000" />
-		<property name="numTestsPerEvictionRun" value="5" />
-		<property name="defaultAutoCommit" value="true" />
-	</bean>
-	<!--第三步 -->
-	<!--定义事务管理器 -->
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
-	<!--第四步 -->
-	<!--定义repository接口的存放目录 -->
-	<!--定义接口实现的后缀，通常用Impl -->
-	<!--定义实体工厂的引用 -->
-	<!--定义事务管理器的引用 -->
-	<jpa:repositories base-package="top.yuyufeng.dao"
-		repository-impl-postfix="Impl" entity-manager-factory-ref="entityManagerFactory"
-		transaction-manager-ref="transactionManager" />
-	<!--第五步 -->
-	<!--声明采用注解的方式申明事务 -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
-	<!--扫描dao-->
-	<context:component-scan base-package="top.yuyufeng.dao" />
 </beans>

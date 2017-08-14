@@ -67,8 +67,8 @@
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">生成索引</a></li>
-                                            <li><a href="#">删除索引</a></li>
+                                            <li><a href="javascript:createIndex('${b.blogId}')">生成索引</a></li>
+                                            <li><a href="javascript:deleteIndex('${b.blogId}')">删除索引</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -128,8 +128,14 @@
     }
 
     function createIndex(id) {
-        $.post("${appServer}/admin/article/index/" + id, function (res) {
-            alert(res)
+        $.get("${appServer}/admin/blog/doIndexCreate/" + id, function (res) {
+            console.log(res)
+        })
+    }
+
+    function deleteIndex(id) {
+        $.get("${appServer}/admin/blog/doIndexDelete/" + id, function (res) {
+            console.log(res)
         })
     }
 

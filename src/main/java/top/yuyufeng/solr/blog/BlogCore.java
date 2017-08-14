@@ -1,47 +1,43 @@
-package top.yuyufeng.solr.entity;
+package top.yuyufeng.solr.blog;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.solr.core.mapping.Indexed;
-import org.springframework.data.solr.core.mapping.SolrDocument;
-import top.yuyufeng.entity.User;
+import org.apache.solr.client.solrj.beans.Field;
 
-import javax.persistence.Column;
 import java.util.Date;
 
 /**
  * Created by yuyufeng on 2017/8/9.
  */
 
-@SolrDocument(solrCoreName = "yuyufeng_blog")
 public class BlogCore {
-    @Id
-    @Indexed
-    public String blogId;
-    @Indexed
+    @Field
+    public Long blogId;
+    @Field
     public String blogTitle;
-    @Indexed
+    @Field
     public String blogBrief;
-    @Indexed
+    @Field
     public String blogContent;
-    @Indexed
+    @Field
     public String blogImage;
-    @Indexed
+    @Field
     public Date updateTime;
-    @Indexed
+    @Field
     public String blogUserName;
-    @Indexed
-    public String blogUserId;
-    @Indexed
-    public String blogCatalogs;
-    @Indexed
+    @Field
+    public Long blogUserId;
+    @Field
+    public String blogCatalogNames;
+    @Field
+    public String blogCatalogIds;
+    @Field
     public String keywords;
 
 
-    public String getBlogId() {
+    public Long getBlogId() {
         return blogId;
     }
 
-    public void setBlogId(String blogId) {
+    public void setBlogId(Long blogId) {
         this.blogId = blogId;
     }
 
@@ -101,19 +97,27 @@ public class BlogCore {
         this.keywords = keywords;
     }
 
-    public String getBlogUserId() {
+    public Long getBlogUserId() {
         return blogUserId;
     }
 
-    public void setBlogUserId(String blogUserId) {
+    public void setBlogUserId(Long blogUserId) {
         this.blogUserId = blogUserId;
     }
 
-    public String getBlogCatalogs() {
-        return blogCatalogs;
+    public String getBlogCatalogNames() {
+        return blogCatalogNames;
     }
 
-    public void setBlogCatalogs(String blogCatalogs) {
-        this.blogCatalogs = blogCatalogs;
+    public void setBlogCatalogNames(String blogCatalogNames) {
+        this.blogCatalogNames = blogCatalogNames;
+    }
+
+    public String getBlogCatalogIds() {
+        return blogCatalogIds;
+    }
+
+    public void setBlogCatalogIds(String blogCatalogIds) {
+        this.blogCatalogIds = blogCatalogIds;
     }
 }

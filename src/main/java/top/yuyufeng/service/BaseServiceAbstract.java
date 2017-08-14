@@ -32,4 +32,5 @@ public abstract class BaseServiceAbstract<T> {
 
     public abstract Page<T> findPage(Pageable pageable);
 
+
 }

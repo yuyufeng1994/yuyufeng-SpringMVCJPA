@@ -6,17 +6,21 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import top.yuyufeng.entity.Blog;
 import top.yuyufeng.entity.Catalog;
 import top.yuyufeng.service.BlogService;
 import top.yuyufeng.service.CatalogService;
+import top.yuyufeng.solr.blog.SolrBlogBean;
 import top.yuyufeng.utils.PageUtil;
 import top.yuyufeng.utils.SessionUtil;
+import top.yuyufeng.vo.JsonResult;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -36,6 +40,7 @@ public class AdminBlogController {
 
     @Autowired
     private CatalogService catalogService;
+
 
     @RequestMapping(value = "/list/{pageNo}", method = RequestMethod.GET)
     public String toList(Model model, @PathVariable("pageNo") Integer pageNo) {
@@ -88,10 +93,33 @@ public class AdminBlogController {
         return "redirect:" + returnUrl;
     }
 
+    @Transactional
     @RequestMapping(value = "/doDelete", method = RequestMethod.GET)
-    public String doDelete(Long blogId, String returnUrl) {
+    public String doDelete(Long blogId, String returnUrl) throws Exception {
+        //删除文章
         blogService.deleteOne(blogId);
+        //删除索引
+        blogService.indexDelete(blogId);
         return "redirect:" + returnUrl;
     }
+
+    @RequestMapping(value = "/doIndexCreate/{blogId}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    JsonResult doIndexCreate(@PathVariable("blogId") Long blogId) throws Exception {
+        int res = blogService.indexCreate(blogId);
+        boolean success = "0".equals(res) ? true : false;
+        return new JsonResult(success, "增加索引成功");
+    }
+
+    @RequestMapping(value = "/doIndexDelete/{blogId}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    JsonResult doIndexDelete(@PathVariable("blogId") Long blogId) throws Exception {
+        int res = blogService.indexDelete(blogId);
+        boolean success = "0".equals(res) ? true : false;
+        return new JsonResult(success, "删除索引成功");
+    }
+
 
 }
