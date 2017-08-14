@@ -29,7 +29,7 @@
                     <h3>联系网站</h3>
                 </div>
                 <div class="panel-body">
-                   <p>如果您有任何关于本站的疑问，请发送到下方邮件地址</p>
+                   <p>如果您有任何关于本站的疑问，请发送邮件至下方地址</p>
                    <p>Email:<a href="mailto:yuyf123@foxmail.com">yuyf123@foxmail.com</a></p>
                 </div>
                 <!-- /.panel-body -->
