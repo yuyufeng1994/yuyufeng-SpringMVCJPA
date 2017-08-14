@@ -29,7 +29,6 @@ public class SolrBlogBean {
      * @throws Exception
      */
     public int addIndex(BlogCore entity) throws Exception {
-        entity.setBlogContent(HtmlUtil.deleteAllHTMLTag(entity.getBlogContent()));
         server.addBean(entity);
         UpdateResponse updateResponse = server.commit();
         return updateResponse.getStatus();
@@ -53,8 +52,8 @@ public class SolrBlogBean {
      *
      * @throws Exception
      */
-    public int deleteByQuery(String query) throws Exception {
-        query = "*:*";
+    public int deleteAll() throws Exception {
+        String query = "*:*";
         server.deleteByQuery(query);
         server.commit();
         UpdateResponse updateResponse = server.commit();

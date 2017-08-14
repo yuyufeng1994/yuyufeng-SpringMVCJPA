@@ -121,5 +121,23 @@ public class AdminBlogController {
         return new JsonResult(success);
     }
 
+    @RequestMapping(value = "/doIndexCreateAll", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    JsonResult doIndexCreateAll() throws Exception {
+        int res = blogService.indexCreateAll();
+        boolean success = 0 == res ? true : false;
+        return new JsonResult(success);
+    }
+
+    @RequestMapping(value = "/doIndexDeleteAll", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    JsonResult doIndexDeleteAll() throws Exception {
+        int res = blogService.indexDeleteAll();
+        boolean success = 0 == res ? true : false;
+        return new JsonResult(success);
+    }
+
 
 }

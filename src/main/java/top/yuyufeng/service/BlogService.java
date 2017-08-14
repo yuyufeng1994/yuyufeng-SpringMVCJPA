@@ -4,13 +4,12 @@ import org.apache.commons.collections.IteratorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import sun.rmi.runtime.Log;
 import top.yuyufeng.constants.BlogStatusEnum;
+import top.yuyufeng.constants.StatusesCommonUse;
 import top.yuyufeng.dao.BlogDao;
 import top.yuyufeng.entity.Blog;
 import top.yuyufeng.entity.Catalog;
@@ -18,8 +17,10 @@ import top.yuyufeng.entity.User;
 import top.yuyufeng.solr.blog.BlogCore;
 import top.yuyufeng.solr.blog.SolrBlogBean;
 import top.yuyufeng.solr.blog.SolrBlogQuery;
+import top.yuyufeng.utils.HtmlUtil;
 import top.yuyufeng.utils.SessionUtil;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -90,14 +91,18 @@ public class BlogService extends BaseServiceAbstract<Blog> {
     public int indexCreate(Long blogId) throws Exception {
         Blog blog = findOneById(blogId);
         if (!BlogStatusEnum.NORMAL.getKey().equals(blog.getBlogStatus())) {
-            LOG.error(blog.getBlogId() + " " + blog.getBlogTitle() + " " + "博客状态是" + BlogStatusEnum.getValue(blog.getBlogStatus()) + " 无法建立索引！");
-            return -1;
+            throw new Exception(blog.getBlogId() + " " + blog.getBlogTitle() + " " + "博客状态是" + BlogStatusEnum.getValue(blog.getBlogStatus()) + " 无法建立索引！");
         }
+        BlogCore blogCore = BlogToBlogCore(blog);
+        return solrBlogBean.addIndex(blogCore);
+    }
+
+    private BlogCore BlogToBlogCore(Blog blog) {
         BlogCore blogCore = new BlogCore();
         blogCore.setBlogId(blog.getBlogId());
         blogCore.setBlogTitle(blog.getBlogTitle());
         blogCore.setBlogBrief(blog.getBlogBrief());
-        blogCore.setBlogContent(blog.getBlogContent());
+        blogCore.setBlogContent(HtmlUtil.deleteAllHTMLTag(blog.getBlogContent()));
         blogCore.setBlogImage(blog.getBlogImage());
         blogCore.setBlogUserName(blog.getBlogUser().getUserName());
         blogCore.setUpdateTime(blog.getUpdateTime());
@@ -113,7 +118,7 @@ public class BlogService extends BaseServiceAbstract<Blog> {
         blogCore.setBlogCatalogIds(catalogIds);
 
         blogCore.setBlogUserId(blog.getBlogUser().getUserId());
-        return solrBlogBean.addIndex(blogCore);
+        return blogCore;
     }
 
     public int indexDelete(Long blogId) throws Exception {
@@ -123,5 +128,29 @@ public class BlogService extends BaseServiceAbstract<Blog> {
     public Page<Blog> queryBlogByKeyWords(String keywords, Pageable pageable) throws Exception {
         Page<Blog> page = solrBlogQuery.queryByKeyWords(keywords, pageable);
         return page;
+    }
+
+    public synchronized int indexCreateAll() throws Exception {
+        Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
+        Pageable pageable = new PageRequest(0, 10, sort);
+        int res = 0;
+        Page<Blog> page;
+        do {
+            page = findPageByBlogStatus(StatusesCommonUse.blogStatusesNormal, pageable);
+            List<BlogCore> blogCores = new ArrayList<>();
+            for (Blog blog : page.getContent()) {
+                BlogCore blogCore = BlogToBlogCore(blog);
+                blogCores.add(blogCore);
+            }
+            res = solrBlogBean.addIndexList(blogCores);
+            LOG.info("索引10条建立完毕~准备接下来来10条");
+            pageable = new PageRequest(pageable.getPageNumber() + 1, 10, sort);
+        }while (page.hasNext());
+
+        return res;
+    }
+
+    public int indexDeleteAll() throws Exception {
+        return solrBlogBean.deleteAll();
     }
 }

@@ -30,8 +30,8 @@
             <div class="col-lg-12">
                 <div class="btn-group" role="group" aria-label="...">
                     <a type="button" class="btn btn-default" href="${appServer}/admin/blog/save?returnUrl=${appServer}/admin/blog/list/${page.number+1}"><i class="glyphicon glyphicon-plus-sign"></i> 增加博客</a>
-                    <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i>更新索引(All)</button>
-                    <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-plus-sign"></i>删除索引(All)</button>
+                    <button type="button" class="btn btn-primary" onclick="createIndexAll()"><i class="glyphicon glyphicon-refresh"></i> 更新索引(All)</button>
+                    <button type="button" class="btn btn-danger"  onclick="deleteIndexAll()"><i class="glyphicon glyphicon-minus-sign"></i> 删除索引(All)</button>
                 </div>
 
                 <table width="100%"
@@ -43,6 +43,7 @@
                         <th>ID</th>
                         <th>标题</th>
                         <th>状态</th>
+                        <th>来源</th>
                         <th>更新时间</th>
                         <th>操作</th>
                     </tr>
@@ -53,6 +54,7 @@
                             <td>${b.blogId}</td>
                             <td><a href="${appServer}/blog/content/${b.blogId}" target="_blank">${b.blogTitle}</a></td>
                             <td>${fnc:getBlogStatusValue(b.blogStatus)}</td>
+                            <td>${b.blogUser.userName}</td>
                             <td><fmt:formatDate value="${b.updateTime}" type="both"
                                                 pattern="yyyy-MM-dd HH:mm:ss"/></td>
                             <td>
@@ -137,6 +139,18 @@
 
     function deleteIndex(id) {
         $.get("${appServer}/admin/blog/doIndexDelete/" + id, function (res) {
+            console.log(res)
+        })
+    }
+    
+    function createIndexAll() {
+        $.get("${appServer}/admin/blog/doIndexCreateAll", function (res) {
+            console.log(res)
+        })
+    }
+    
+    function deleteIndexAll() {
+        $.get("${appServer}/admin/blog/doIndexDeleteAll", function (res) {
             console.log(res)
         })
     }
