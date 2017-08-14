@@ -50,6 +50,7 @@ public class SolrBlogQuery {
         query.setStart(pageable.getPageNumber());//开始记录数
         query.setRows(pageable.getPageSize());//总条数
         QueryResponse queryResponse = server.query(query);
+        long sum = queryResponse.getResults().getNumFound();
         List<BlogCore> results = queryResponse.getBeans(BlogCore.class);
         //输出高亮
         Map<String, Map<String, List<String>>> highlighting = queryResponse.getHighlighting();
@@ -115,7 +116,7 @@ public class SolrBlogQuery {
             }
             blogs.add(blog);
         }
-        return new PageImpl<Blog>(blogs, pageable, results.size()); //TODO 这里的总页数不对
+        return new PageImpl<Blog>(blogs, pageable, sum);
     }
 
     public static void main(String[] args) throws Exception {
