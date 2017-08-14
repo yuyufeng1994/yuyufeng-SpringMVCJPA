@@ -87,9 +87,10 @@
 		<!-- 定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值 -->
 		<property name="exceptionMappings">
 			<props>
-				<prop key="top.yuyufeng.exception.AuthorityException">admin/error</prop>
-				<prop key="top.yuyufeng.exception.BlogException">blog/error</prop>
-				<prop key="java.lang.Exception">error</prop>
+				<prop key="top.yuyufeng.exception.AuthorityException">error/admin-error</prop>
+				<prop key="top.yuyufeng.exception.BlogException">error/blog-error</prop>
+				<prop key="org.apache.solr.client.solrj.SolrServerException">error/solr-error</prop>
+				<prop key="java.lang.Exception">error/main-error</prop>
 				<!-- 这里还可以继续扩展对不同异常类型的处理 -->
 			</props>
 		</property>
