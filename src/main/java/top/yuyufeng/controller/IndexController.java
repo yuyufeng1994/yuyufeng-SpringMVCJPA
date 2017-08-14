@@ -27,4 +27,20 @@ public class IndexController {
         return "develop";
     }
 
+
+    @RequestMapping(value = "/about", method = RequestMethod.GET)
+    public String toAbout() {
+        return "about";
+    }
+
+    @RequestMapping(value = "/service", method = RequestMethod.GET)
+    public String toService() {
+        return "service";
+    }
+
+    @RequestMapping(value = "/contact", method = RequestMethod.GET)
+    public String toContact() {
+        return "contact";
+    }
+
 }

@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+    <title>联系 -- 心得站点</title>
     <%@include file="/WEB-INF/jsp/include/head.jsp" %>
 </head>
 <body>
@@ -22,8 +23,16 @@
     <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-12">
-            <div class="jumbotron">
-                <p>${ex.message}</p>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>联系网站</h3>
+                </div>
+                <div class="panel-body">
+                   <p>如果您有任何关于本站的疑问，请发送到下方邮件地址</p>
+                   <p>Email:<a href="mailto:yuyf123@foxmail.com">yuyf123@foxmail.com</a></p>
+                </div>
+                <!-- /.panel-body -->
             </div>
         </div>
 

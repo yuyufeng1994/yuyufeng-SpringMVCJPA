@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+    <title>服务 -- 心得站点</title>
     <%@include file="/WEB-INF/jsp/include/head.jsp" %>
 </head>
 <body>
@@ -22,8 +23,10 @@
     <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-12">
+
             <div class="jumbotron">
-                <p>${ex.message}</p>
+                <h1>尽请期待~</h1>
+                <p>此页面正在开发中...</p>
             </div>
         </div>
 

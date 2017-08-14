@@ -11,11 +11,11 @@
 <html lang="zh">
 <head>
     <title>${blog.blogTitle} -- 博客 -- 心得站点</title>
-    <%@include file="/WEB-INF/jsp/blog/include/head.jsp" %>
+    <%@include file="/WEB-INF/jsp/include/head.jsp" %>
 </head>
 <body>
 <!-- Navigation -->
-<%@include file="/WEB-INF/jsp/blog/include/nav.jsp" %>
+<%@include file="/WEB-INF/jsp/include/nav.jsp" %>
 
 <!-- Page Content -->
 <div class="container">
@@ -63,7 +63,7 @@
     <hr>
 </div>
 <!-- /.container -->
-<%@include file="/WEB-INF/jsp/blog/include/foot.jsp" %>
+<%@include file="/WEB-INF/jsp/include/foot.jsp" %>
 
 </body>
 </html>

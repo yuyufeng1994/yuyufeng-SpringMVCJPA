@@ -27,13 +27,13 @@
                     <a href="${appServer}/blog/index">博客</a>
                 </li>
                 <li>
-                    <a href="${appServer}/develop">关于</a>
+                    <a href="${appServer}/about">关于</a>
                 </li>
                 <li>
-                    <a href="${appServer}/develop">服务</a>
+                    <a href="${appServer}/service">服务</a>
                 </li>
                 <li>
-                    <a href="${appServer}/develop">联系</a>
+                    <a href="${appServer}/contact">联系</a>
                 </li>
             </ul>
         </div>
