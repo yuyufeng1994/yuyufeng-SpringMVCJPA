@@ -51,7 +51,6 @@ public class SolrBlogQuery {
         query.setRows(pageable.getPageSize());//总条数
         QueryResponse queryResponse = server.query(query);
         List<BlogCore> results = queryResponse.getBeans(BlogCore.class);
-        System.out.println("总条数为：" + results.size());
         //输出高亮
         Map<String, Map<String, List<String>>> highlighting = queryResponse.getHighlighting();
         List<Blog> blogs = new ArrayList<>();
@@ -82,7 +81,6 @@ public class SolrBlogQuery {
             if (list != null && list.size() > 0) {
                 result.setBlogUserName(list.get(0));
             }
-
 
             //类型转换
             Blog blog = new Blog();
@@ -115,11 +113,9 @@ public class SolrBlogQuery {
                     e.printStackTrace();
                 }
             }
-
-
             blogs.add(blog);
         }
-        return new PageImpl<Blog>(blogs, pageable, results.size());
+        return new PageImpl<Blog>(blogs, pageable, results.size()); //TODO 这里的总页数不对
     }
 
     public static void main(String[] args) throws Exception {
