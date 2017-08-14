@@ -123,10 +123,12 @@ public class SolrBlogQuery {
     }
 
     public static void main(String[] args) throws Exception {
-      /*  Pageable pageable = new PageRequest(0, 10);
-        Page<Blog> page = queryByKeyWords("体验", pageable);
-        for (Blog blog : page.getContent()) {
-            System.out.println(blog.toString());
-        }*/
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 18; i++) {
+            list.add("das"+i);
+        }
+        Pageable pageable = new PageRequest(0,10);
+        Page<String> page = new PageImpl<String>(list, pageable, 18);
+        System.out.println(page.getTotalPages());
     }
 }
