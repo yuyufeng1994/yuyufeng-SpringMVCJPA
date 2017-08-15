@@ -101,7 +101,7 @@
                         <script>
                             $("#inputStatus").val('${blog.blogStatus}')
                         </script>
-                        <p class="help-block">博客内容中上传的第一张上传图片会修改此项(推荐使用900*300的图片)</p>
+                        <p class="help-block">请选择博客状态,只有正常的博客才能被访问.默认状态为修改中</p>
                     </div>
 
                     <button type="submit" class="btn btn-default" onclick="submitBlog()">提交</button>
