@@ -11,7 +11,7 @@
 <div class="well">
     <h4>博客搜索</h4>
     <div class="input-group">
-        <input type="text" id="input-keywords"  class="form-control" placeholder="输入搜索内容.." value="${keywords}">
+        <input type="text" id="input-keywords"  class="form-control" placeholder="输入内容进行搜索.." value="${keywords}">
         <span class="input-group-btn">
                             <button class="btn btn-default" type="button" onclick="searchFormSubmit()">
                                 <span class="glyphicon glyphicon-search"></span>
