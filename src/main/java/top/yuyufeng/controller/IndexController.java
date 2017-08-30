@@ -33,10 +33,6 @@ public class IndexController {
         return "about";
     }
 
-    @RequestMapping(value = "/service", method = RequestMethod.GET)
-    public String toService() {
-        return "service";
-    }
 
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
     public String toContact() {

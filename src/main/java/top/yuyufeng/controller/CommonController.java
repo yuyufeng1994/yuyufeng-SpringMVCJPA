@@ -89,8 +89,8 @@ public class CommonController {
         return null;
     }
 
-    @RequestMapping("/stream/decode")
-    public void decodeQR(HttpServletRequest request,String content, HttpServletResponse response) throws IOException, WriterException {
+    @RequestMapping(value = "/stream/decode", method = RequestMethod.GET)
+    public void decodeQR(String content, HttpServletResponse response) throws IOException, WriterException {
         OutputStream os = response.getOutputStream();
         int width = 200; // 图像宽度
         int height = 200; // 图像高度

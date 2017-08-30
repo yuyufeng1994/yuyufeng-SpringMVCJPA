@@ -23,11 +23,19 @@
     <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-12">
+            <h1 class="my-4">服务
+                <small>更多接口,即将上线</small>
+            </h1>
 
-            <div class="jumbotron">
-                <h1>尽请期待~</h1>
-                <p>此功能正在开发中...</p>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">二维码生成服务</h2>
+                    <p class="card-text">输入相应内容,即可生成二维码</p>
+                    <a href="${appServer}/service/toQrcode" class="btn btn-primary">立即使用 &rarr;</a>
+                </div>
             </div>
+
         </div>
 
     </div>

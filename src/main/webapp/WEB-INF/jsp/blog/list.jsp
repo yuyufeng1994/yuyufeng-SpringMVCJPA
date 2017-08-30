@@ -40,7 +40,7 @@
             </c:if>
 
 
-            <c:if test="${page.content.size() == 0}">
+            <c:if test="${page == null || page.content.size() == 0}">
                 <div class="alert alert-warning">
                    <i class="glyphicon glyphicon-info-sign"></i> 没有找到相关博客
                 </div>

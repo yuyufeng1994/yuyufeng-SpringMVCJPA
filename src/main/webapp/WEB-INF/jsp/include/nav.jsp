@@ -30,7 +30,7 @@
                     <a href="${appServer}/about">关于</a>
                 </li>
                 <li>
-                    <a href="${appServer}/service">服务</a>
+                    <a href="${appServer}/service/index">服务</a>
                 </li>
                 <li>
                     <a href="${appServer}/contact">联系</a>

@@ -29,7 +29,11 @@ public class SolrBlogQuery {
 
     //查询索引
     public  Page<Blog> queryByKeyWords(String keywords, Pageable pageable) throws Exception {
+        List<Blog> blogs = new ArrayList<>();
         keywords=keywords.replaceAll(" ","");
+        if(StringUtils.isEmpty(keywords)){
+            return new PageImpl<>(blogs, pageable, 0);
+        }
         SolrQuery query = new SolrQuery();
         query.set("q", "keywords:" + keywords);//*通配多个字符
 //        query.set("sort", "product_price desc");
@@ -55,7 +59,7 @@ public class SolrBlogQuery {
         List<BlogCore> results = queryResponse.getBeans(BlogCore.class);
         //输出高亮
         Map<String, Map<String, List<String>>> highlighting = queryResponse.getHighlighting();
-        List<Blog> blogs = new ArrayList<>();
+
         for (BlogCore result : results) {
             Map<String, List<String>> map = highlighting.get(result.getBlogId()+"");
 
