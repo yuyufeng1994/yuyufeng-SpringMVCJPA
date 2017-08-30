@@ -66,4 +66,35 @@ public class ServiceController {
         MatrixToImageWriter.writeToStream(bitMatrix, format, os);
     }
 
+
+    /**
+     * 二维码下载
+     * @param content
+     * @param response
+     * @throws IOException
+     * @throws WriterException
+     */
+
+    @RequestMapping(value = "/doQrcodeDownload", method = RequestMethod.GET)
+    public void doQrcodeDownload(String content, HttpServletResponse response) throws IOException, WriterException {
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("multipart/form-data");
+        response.setHeader("Content-Disposition", "attachment;fileName=qrcode.png");
+        if(StringUtils.isEmpty(content)){
+            return;
+        }
+        if(content.length() > 200){
+            content = content.substring(0,200);
+        }
+        OutputStream os = response.getOutputStream();
+        int width = 200; // 图像宽度
+        int height = 200; // 图像高度
+        String format = "png";// 图像类型
+        Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
+        hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+        BitMatrix bitMatrix = new MultiFormatWriter().encode(content,
+                BarcodeFormat.QR_CODE, width, height, hints);// 生成矩阵
+        MatrixToImageWriter.writeToStream(bitMatrix, format, os);
+    }
+
 }

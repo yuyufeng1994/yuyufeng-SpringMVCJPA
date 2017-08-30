@@ -53,7 +53,7 @@
                 <hr/>
                 <div class="form-group">
                     <label for="img-result">结果</label><br/>
-                    <img id="img-result" src="" alt="待生成" class="img-thumbnail">  <button type="button" onclick="downloadQrcode()" class="btn btn-default">下载</button>
+                    <a title="点击下载" href="javascript:downloadQrcode()"><img id="img-result" src="" alt="待生成" class="img-thumbnail"></a>
                     <p class="help-block">如需要扫描二维码后跳转,请输入"http://xxx.com" 格式(注:没在微信认证的地址,无法使用微信扫描跳转后访问)</p>
                 </div>
             </form>
@@ -84,7 +84,7 @@
             alert("请先输入内容!")
             return;
         }
-        var toHref = '${appServer}/service/doQrcode?content=' + content;
+        var toHref = '${appServer}/service/doQrcodeDownload?content=' + content;
         console.log(toHref)
         window.open(toHref,'_blank');
     }
