@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <title>服务 -- 心得站点</title>
+    <title>服务--心得站点</title>
     <%@include file="/WEB-INF/jsp/include/head.jsp" %>
 </head>
 <body>
@@ -32,7 +32,7 @@
                 <div class="card-body">
                     <h2 class="card-title">二维码生成服务</h2>
                     <p class="card-text">输入相应内容,即可生成二维码</p>
-                    <a href="${appServer}/service/toQrcode" class="btn btn-primary">立即使用 &rarr;</a>
+                    <a href="${appServer}/service/toQrcode" class="btn btn-default">立即查看 &rarr;</a>
                 </div>
             </div>
 

@@ -16,7 +16,7 @@
 <meta name="author" content="俞育峰">
 <link rel="shortcut icon" href="${staticServer}/static/image/icon.png" type="image/x-icon" />
 
-<title>博客 -- 心得站点</title>
+<title>博客--心得站点</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="${staticServer}/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

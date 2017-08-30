@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <title>联系 -- 心得站点</title>
+    <title>联系--心得站点</title>
     <%@include file="/WEB-INF/jsp/include/head.jsp" %>
 </head>
 <body>
