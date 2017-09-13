@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="yuyufeng">
+<%@include file="/WEB-INF/jsp/include/head.jsp" %>
 <p>跳转到博客主页...</p>
 <script>
     window.location.href="/blog/index"

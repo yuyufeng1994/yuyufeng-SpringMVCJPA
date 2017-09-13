@@ -25,7 +25,8 @@ public class TestInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object object,
                                 Exception exception) throws Exception {
-        LOG.info("TestInterceptor");
+//        LOG.info("TestInterceptor");
+        LOG.info(request.getRemoteAddr()+" 访问 "+request.getRequestURI());
     }
 
     // 进入Handler方法之后，返回modelAndView之前执行

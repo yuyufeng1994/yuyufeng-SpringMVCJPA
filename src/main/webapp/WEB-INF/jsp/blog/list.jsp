@@ -82,7 +82,7 @@
         </div>
 
         <!-- Blog Sidebar Widgets Column -->
-        <div class="col-md-4">
+        <div class="col-md-4 visible-sm">
             <%@include file="/WEB-INF/jsp/blog/include/slidebar.jsp" %>
         </div>
 

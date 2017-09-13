@@ -33,7 +33,7 @@
                     <a href="${appServer}/service/index">服务</a>
                 </li>
                 <li>
-                    <a href="${appServer}/contact">联系</a>
+                    <a href="${appServer}/contact">留言</a>
                 </li>
             </ul>
         </div>
