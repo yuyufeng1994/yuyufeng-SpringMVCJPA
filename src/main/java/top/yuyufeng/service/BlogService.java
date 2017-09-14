@@ -34,8 +34,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class BlogService extends BaseServiceAbstract<Blog> {
     private final Logger LOG = LoggerFactory.getLogger(this.getClass());
-    @Resource(name = "redisTemplate")
-    private ValueOperations<String, Page<Blog>> valueOs;
+
     @Autowired
     private SolrBlogBean solrBlogBean;
 
@@ -74,43 +73,19 @@ public class BlogService extends BaseServiceAbstract<Blog> {
     }
 
     public Page<Blog> findPageByBlogStatus(List<String> blogStatuses, Pageable pageable) {
-        Page<Blog> page = null;
+        Page<Blog> page;
         if (pageable == null) {
             List<Blog> list = IteratorUtils.toList(blogDao.findByBlogStatusIn(blogStatuses, pageable).iterator());
             page = new PageImpl<Blog>(list);
             return page;
         }
-        try {
-            page = valueOs.get("blog-page-" + pageable.getPageNumber() + "-" + pageable.getPageSize() + "-" + pageable.getSort());
-        } catch (Exception e) {
-            LOG.error("Redis异常:" + e);
-        }
-        if (page == null) {
-            page = blogDao.findByBlogStatusIn(blogStatuses, pageable);
-            try {
-                valueOs.set("blog-page-" + pageable.getPageNumber() + "-" + pageable.getPageSize() + "-" + pageable.getSort(), page, 5, TimeUnit.MINUTES);
-            } catch (Exception e) {
-                LOG.error("Redis异常:" + e);
-            }
-        }
+        page = blogDao.findByBlogStatusIn(blogStatuses, pageable);
         return page;
     }
 
     public Page<Blog> findBlogPageByCatalogId(List<String> blogStatuses, Long catalogId, Pageable pageable) {
-        Page<Blog> page = null;
-        try {
-            page = valueOs.get("blog-page-" + pageable.getPageNumber() + "-" + pageable.getPageSize() + "-" + pageable.getSort() + "-" + catalogId);
-        } catch (Exception e) {
-            LOG.error("Redis异常:" + e);
-        }
-        if (page == null) {
-            page = blogDao.findBlogPageByCatalogId(blogStatuses, catalogId, pageable);
-            try {
-                valueOs.set("blog-page-" + pageable.getPageNumber() + "-" + pageable.getPageSize() + "-" + pageable.getSort() + "-" + catalogId, page, 5, TimeUnit.MINUTES);
-            } catch (Exception e) {
-                LOG.error("Redis异常:" + e);
-            }
-        }
+        Page<Blog> page;
+        page = blogDao.findBlogPageByCatalogId(blogStatuses, catalogId, pageable);
         return page;
     }
 
