@@ -34,7 +34,7 @@
                     </p>
 
                     <p>
-                        网站架构：本网站采用了SpringMVC+JPA+Hibernate的框架开发，集成了Solr搜索引擎等服务。前端基于Bootstrap+jQuery设计。(如监测网站访问压力变大,将进行缓存\分布式\集群等的改造,PS:现在没钱买更多服务器,只能尽量优化了~)
+                        网站架构：本网站采用了SpringMVC+JPA+Hibernate的框架开发，集成了Solr搜索引擎,Redis缓存等服务。前端基于Bootstrap+jQuery设计。(如监测网站访问压力变大,将进行缓存\分布式\集群等的改造,PS:现在没钱买更多服务器,只能尽量优化了~)
                     </p>
 
                     <p>

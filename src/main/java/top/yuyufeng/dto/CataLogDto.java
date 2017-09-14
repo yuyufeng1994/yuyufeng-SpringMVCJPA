@@ -1,11 +1,12 @@
 package top.yuyufeng.dto;
 
 import javax.persistence.Column;
+import java.io.Serializable;
 
 /**
  * Created by yuyufeng on 2017/8/3.
  */
-public class CataLogDto {
+public class CataLogDto implements Serializable{
     private Long catalogId;
 
     private String catalogName;

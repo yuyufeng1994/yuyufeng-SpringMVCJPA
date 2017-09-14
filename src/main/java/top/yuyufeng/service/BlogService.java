@@ -5,12 +5,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import sun.rmi.runtime.Log;
 import top.yuyufeng.constants.BlogStatusEnum;
 import top.yuyufeng.constants.StatusesCommonUse;
 import top.yuyufeng.dao.BlogDao;
+import top.yuyufeng.dto.CataLogDto;
 import top.yuyufeng.entity.Blog;
 import top.yuyufeng.entity.Catalog;
 import top.yuyufeng.entity.User;
@@ -20,9 +22,11 @@ import top.yuyufeng.solr.blog.SolrBlogQuery;
 import top.yuyufeng.utils.HtmlUtil;
 import top.yuyufeng.utils.SessionUtil;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by yuyufeng on 2017/8/1.
@@ -30,6 +34,8 @@ import java.util.List;
 @Service
 public class BlogService extends BaseServiceAbstract<Blog> {
     private final Logger LOG = LoggerFactory.getLogger(this.getClass());
+    @Resource(name = "redisTemplate")
+    private ValueOperations<String, Page<Blog>> valueOs;
     @Autowired
     private SolrBlogBean solrBlogBean;
 
@@ -44,8 +50,6 @@ public class BlogService extends BaseServiceAbstract<Blog> {
     @Override
     public Blog save(Blog entity) {
         entity.setUpdateTime(new Date());
-
-
         if (StringUtils.isEmpty(entity.getBlogStatus())) {
             entity.setBlogStatus(BlogStatusEnum.MODIFYING.getKey());
         }
@@ -59,25 +63,54 @@ public class BlogService extends BaseServiceAbstract<Blog> {
 
     @Override
     public Page<Blog> findPage(Pageable pageable) {
+        Page<Blog> page = null;
         if (pageable == null) {
             List<Blog> list = IteratorUtils.toList(blogDao.findAll().iterator());
-            Page<Blog> page = new PageImpl<Blog>(list);
+            page = new PageImpl<Blog>(list);
             return page;
         }
-        return blogDao.findAll(pageable);
+        page = blogDao.findAll(pageable);
+        return page;
     }
 
     public Page<Blog> findPageByBlogStatus(List<String> blogStatuses, Pageable pageable) {
+        Page<Blog> page = null;
         if (pageable == null) {
             List<Blog> list = IteratorUtils.toList(blogDao.findByBlogStatusIn(blogStatuses, pageable).iterator());
-            Page<Blog> page = new PageImpl<Blog>(list);
+            page = new PageImpl<Blog>(list);
             return page;
         }
-        return blogDao.findByBlogStatusIn(blogStatuses, pageable);
+        try {
+            page = valueOs.get("blog-page-" + pageable.getPageNumber() + "-" + pageable.getPageSize() + "-" + pageable.getSort());
+        } catch (Exception e) {
+            LOG.error("Redis异常:" + e);
+        }
+        if (page == null) {
+            page = blogDao.findByBlogStatusIn(blogStatuses, pageable);
+            try {
+                valueOs.set("blog-page-" + pageable.getPageNumber() + "-" + pageable.getPageSize() + "-" + pageable.getSort(), page, 5, TimeUnit.MINUTES);
+            } catch (Exception e) {
+                LOG.error("Redis异常:" + e);
+            }
+        }
+        return page;
     }
 
     public Page<Blog> findBlogPageByCatalogId(List<String> blogStatuses, Long catalogId, Pageable pageable) {
-        Page<Blog> page = blogDao.findBlogPageByCatalogId(blogStatuses, catalogId, pageable);
+        Page<Blog> page = null;
+        try {
+            page = valueOs.get("blog-page-" + pageable.getPageNumber() + "-" + pageable.getPageSize() + "-" + pageable.getSort() + "-" + catalogId);
+        } catch (Exception e) {
+            LOG.error("Redis异常:" + e);
+        }
+        if (page == null) {
+            page = blogDao.findBlogPageByCatalogId(blogStatuses, catalogId, pageable);
+            try {
+                valueOs.set("blog-page-" + pageable.getPageNumber() + "-" + pageable.getPageSize() + "-" + pageable.getSort() + "-" + catalogId, page, 5, TimeUnit.MINUTES);
+            } catch (Exception e) {
+                LOG.error("Redis异常:" + e);
+            }
+        }
         return page;
     }
 
@@ -145,7 +178,7 @@ public class BlogService extends BaseServiceAbstract<Blog> {
             res = solrBlogBean.addIndexList(blogCores);
             LOG.info("索引10条建立完毕~准备接下来来10条");
             pageable = new PageRequest(pageable.getPageNumber() + 1, 10, sort);
-        }while (page.hasNext());
+        } while (page.hasNext());
 
         return res;
     }

@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import top.yuyufeng.constants.StatusesCommonUse;
@@ -13,15 +14,16 @@ import top.yuyufeng.entity.User;
 import top.yuyufeng.service.CatalogService;
 import top.yuyufeng.utils.SessionUtil;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 博客拦截器
  *
  * @author yyf
- *
  */
 public class BlogInterceptor implements HandlerInterceptor {
 
@@ -44,8 +46,8 @@ public class BlogInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object object,
                            ModelAndView modelAndView) throws Exception {
         //装载分类
-        List<CataLogDto> catalogs = catalogService.findAllCatalogs(StatusesCommonUse.blogStatusesNormal);
-        modelAndView.addObject("catalogs",catalogs);
+        List<CataLogDto> catalogs =  catalogService.findAllCatalogs(StatusesCommonUse.blogStatusesNormal);
+        modelAndView.addObject("catalogs", catalogs);
     }
 
     // 进入Handler方法之前

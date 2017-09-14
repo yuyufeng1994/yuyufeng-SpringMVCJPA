@@ -1,6 +1,7 @@
 package top.yuyufeng.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +12,7 @@ import java.util.Set;
 @Entity
 @Cacheable
 @Table(name = "blog_info")
-public class Blog {
+public class Blog implements Serializable{
     @Id // 主键
     @GeneratedValue(strategy = GenerationType.AUTO) // 自动增长类型
     @Column(length = 10)
@@ -39,7 +40,7 @@ public class Blog {
     @JoinColumn(name = "userId",updatable = false)
     private User blogUser;
 
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinTable(name = "blog_catalog_info", joinColumns = { @JoinColumn(name = "blogId") }, inverseJoinColumns = {
             @JoinColumn(name = "catalogId") })
     @OrderBy("catalogId desc")

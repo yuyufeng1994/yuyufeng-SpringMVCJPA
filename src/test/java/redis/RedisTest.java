@@ -12,7 +12,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring/applicationRedis.xml"})
@@ -21,12 +23,24 @@ public class RedisTest {
     private RedisTemplate<String, String> template;
 
     @Resource(name="redisTemplate")
-    private ValueOperations<String, String> valueOs;
+    private ValueOperations<String, List<String>> valueOs;
 
     @Test
-    public void test() {
-        String result= valueOs.get("aa".getBytes());
-        System.out.println(result);
+    public void testoGet() {
+
+        List<String> lists = valueOs.get("qq");
+        for (String list : lists) {
+            System.out.println(list);
+        }
+    }
+
+
+    @Test
+    public void testoSet() {
+        List<String> lists = new ArrayList<>();
+        lists.add("aa");
+        lists.add("bb");
+        valueOs.set("qq",lists);
     }
 
     @Test

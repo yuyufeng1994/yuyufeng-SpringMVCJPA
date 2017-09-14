@@ -12,7 +12,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "user_info")
-public class User {
+public class User implements Serializable{
     @Id // 主键
     @GeneratedValue(strategy = GenerationType.AUTO) // 自动增长类型
     @Column(length = 10)

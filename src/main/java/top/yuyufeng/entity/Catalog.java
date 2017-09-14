@@ -1,6 +1,7 @@
 package top.yuyufeng.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -11,7 +12,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "catalog_info")
-public class Catalog {
+public class Catalog implements Serializable{
     @Id // 主键
     @GeneratedValue(strategy = GenerationType.AUTO) // 自动增长类型
     @Column(length = 10)
