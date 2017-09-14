@@ -87,10 +87,6 @@ public class BlogService extends BaseServiceAbstract<Blog> {
         }
         if (page == null) {
             page = blogDao.findByBlogStatusIn(blogStatuses, pageable);
-            //清楚内容，减小redis对象大小
-            for (Blog blog : page.getContent()) {
-                blog.setBlogContent(null);
-            }
             try {
                 valueOs.set("blog-page-" + pageable.getPageNumber() + "-" + pageable.getPageSize() + "-" + pageable.getSort(), page, 5, TimeUnit.MINUTES);
             } catch (Exception e) {
@@ -109,10 +105,6 @@ public class BlogService extends BaseServiceAbstract<Blog> {
         }
         if (page == null) {
             page = blogDao.findBlogPageByCatalogId(blogStatuses, catalogId, pageable);
-            //清楚内容，减小redis对象大小
-            for (Blog blog : page.getContent()) {
-                blog.setBlogContent(null);
-            }
             try {
                 valueOs.set("blog-page-" + pageable.getPageNumber() + "-" + pageable.getPageSize() + "-" + pageable.getSort() + "-" + catalogId, page, 5, TimeUnit.MINUTES);
             } catch (Exception e) {
