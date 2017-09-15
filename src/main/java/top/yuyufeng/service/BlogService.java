@@ -20,7 +20,7 @@ import top.yuyufeng.solr.blog.BlogCore;
 import top.yuyufeng.solr.blog.SolrBlogBean;
 import top.yuyufeng.solr.blog.SolrBlogQuery;
 import top.yuyufeng.utils.HtmlUtil;
-import top.yuyufeng.utils.SessionUtil;
+
 
 import javax.annotation.Resource;
 import java.util.ArrayList;

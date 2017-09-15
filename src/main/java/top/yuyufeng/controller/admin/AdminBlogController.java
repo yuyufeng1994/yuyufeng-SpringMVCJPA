@@ -20,7 +20,7 @@ import top.yuyufeng.service.BlogService;
 import top.yuyufeng.service.CatalogService;
 import top.yuyufeng.solr.blog.SolrBlogBean;
 import top.yuyufeng.utils.PageUtil;
-import top.yuyufeng.utils.SessionUtil;
+import top.yuyufeng.utils.SessionUserUtil;
 import top.yuyufeng.vo.JsonResult;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +35,8 @@ import java.util.Set;
 @Controller
 @RequestMapping("/admin/blog")
 public class AdminBlogController {
+    @Autowired
+    private SessionUserUtil sessionUserUtil;
 
     @Autowired
     private BlogService blogService;
@@ -87,7 +89,7 @@ public class AdminBlogController {
         blog.setCatalogs(catalogs);
         if (StringUtils.isEmpty(blog.getBlogId())) {
             blog.setCreateTime(new Date());
-            blog.setBlogUser(SessionUtil.getSessionUser(request));
+            blog.setBlogUser(sessionUserUtil.getSessionUser(request));
         }
         blogService.save(blog);
         return "redirect:" + returnUrl;

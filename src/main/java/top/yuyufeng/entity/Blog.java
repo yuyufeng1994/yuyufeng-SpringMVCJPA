@@ -40,7 +40,7 @@ public class Blog implements Serializable{
     @JoinColumn(name = "userId",updatable = false)
     private User blogUser;
 
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinTable(name = "blog_catalog_info", joinColumns = { @JoinColumn(name = "blogId") }, inverseJoinColumns = {
             @JoinColumn(name = "catalogId") })
     @OrderBy("catalogId desc")

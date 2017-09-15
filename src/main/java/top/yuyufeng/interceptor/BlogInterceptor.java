@@ -12,7 +12,6 @@ import top.yuyufeng.dto.CataLogDto;
 import top.yuyufeng.entity.Catalog;
 import top.yuyufeng.entity.User;
 import top.yuyufeng.service.CatalogService;
-import top.yuyufeng.utils.SessionUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;

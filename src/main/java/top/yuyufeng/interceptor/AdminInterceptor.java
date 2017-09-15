@@ -12,7 +12,7 @@ import top.yuyufeng.dto.CataLogDto;
 import top.yuyufeng.entity.User;
 import top.yuyufeng.exception.AuthorityException;
 import top.yuyufeng.service.CatalogService;
-import top.yuyufeng.utils.SessionUtil;
+import top.yuyufeng.utils.SessionUserUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +25,8 @@ import java.util.List;
  */
 public class AdminInterceptor implements HandlerInterceptor {
 
+    @Autowired
+    private SessionUserUtil sessionUserUtil;
 
     @Autowired
     private CatalogService catalogService;
@@ -55,7 +57,7 @@ public class AdminInterceptor implements HandlerInterceptor {
         if ("/admin/login".equals(uri) || "/admin/doLogin".equals(uri) || "/admin/quit".equals(uri)) {
             return true;
         }
-        User sessionUser = SessionUtil.getSessionUser(request);
+        User sessionUser = sessionUserUtil.getSessionUser(request);
         if (sessionUser == null) {
             request.getRequestDispatcher("/WEB-INF/jsp/admin/login.jsp").forward(request, response);
             return false;

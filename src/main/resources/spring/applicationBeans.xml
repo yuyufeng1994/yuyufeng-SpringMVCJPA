@@ -18,6 +18,9 @@
         <entry key="fileContent" value="${file.content}"/>
     </util:map>
 
+    <bean id="sessionUserUtil" class="top.yuyufeng.utils.SessionUserUtil">
+
+    </bean>
     <!--messages-->
     <!--<bean id="messageSource"
           class="org.springframework.context.support.ResourceBundleMessageSource">
