@@ -2,6 +2,7 @@ package top.yuyufeng.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import top.yuyufeng.entity.User;
@@ -13,9 +14,8 @@ import javax.servlet.http.HttpServletResponse;
  * 测试拦截器
  *
  * @author yyf
- *
  */
-public class TestInterceptor implements HandlerInterceptor {
+public class LogInterceptor implements HandlerInterceptor {
 
     private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 
@@ -24,8 +24,11 @@ public class TestInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object object,
                                 Exception exception) throws Exception {
-//        LOG.info("TestInterceptor");
-        LOG.info(request.getRemoteAddr()+" 访问 "+request.getRequestURI());
+        String ip = request.getHeader("x-forwarded-for");
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+        LOG.info(request.getRemoteAddr() + " 访问 " + request.getRequestURI());
     }
 
     // 进入Handler方法之后，返回modelAndView之前执行
