@@ -17,13 +17,16 @@ public class StationUtil {
 
     static {
         File file = new File(StationUtil.class.getResource("/data/station_name.js").getFile());
-        FileReader reader = null;
+        InputStreamReader read = null;
         try {
-            reader = new FileReader(file);
+            read = new InputStreamReader(new FileInputStream(file),"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        BufferedReader bReader = new BufferedReader(reader);
+
+        BufferedReader bReader = new BufferedReader(read);
         String string = null;
         try {
             string = bReader.readLine();

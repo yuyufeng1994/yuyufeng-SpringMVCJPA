@@ -8,8 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -22,17 +25,18 @@ public class TrainService {
     private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 
     public static void main(String[] args) {
-        String fromStation = StationUtil.getStationByStationName("杭州").getStationCode();
+        String fromStation = StationUtil.getStationByStationName("上海").getStationCode();
         String toStation = StationUtil.getStationByStationName("广州").getStationCode();
         String trainDate = "2017-10-01";
         try {
             new TrainService().queryTrainList(fromStation, toStation, trainDate, "ADULT");
         } catch (IOException e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
-    public void queryTrainList(String fromStation, String toStation, String trainDate, String purposeCode) throws IOException {
+    public List<String> queryTrainList(String fromStation, String toStation, String trainDate, String purposeCode) throws IOException {
+        List<String> returnList = new ArrayList<>();
         Map<String, String> headers = new HashMap<String, String>();
         headers.put("Accept", "*/*");
         headers.put("Accept-Encoding", "gzip, deflate, br");
@@ -73,12 +77,11 @@ public class TrainService {
                     .ignoreContentType(true)
                     .headers(headers)
                     .get();
-
+            System.out.println(doc);
             result = doc.body().html();
         } catch (Exception e) {
             LOG.error(e.getMessage());
         }
-        System.out.println("======================================================");
         if (StringUtils.isNotEmpty(result)) {
             JSONObject jsonObject = JSONObject.parseObject(result);
             //序号  车次 出发站/到达站 出发时间/达到时间 历时 商务座  特等座 一等座 二等座 高级软卧 软卧 硬卧 软座 硬座 无座
@@ -89,13 +92,13 @@ public class TrainService {
                 String[] resultStringArray = resultString.split("\\|");
 
                 for (int i1 = 0; i1 < resultStringArray.length; i1++) {
-                    System.out.print("["+i1+"]"+resultStringArray[i1] + " ");
+                    System.out.print("[" + i1 + "]" + resultStringArray[i1] + " ");
+                    returnList.add("[" + i1 + "]" + resultStringArray[i1]);
                 }
                 System.out.println();
                 System.out.println("===================================================");
             }
         }
-
-        System.out.println("=======本次查询结束=====");
+        return returnList;
     }
 }
